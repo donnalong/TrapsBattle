@@ -60,7 +60,6 @@ namespace TrapsBattle.ViewModels
 
         public EffectViewModel()
         {
-
         }
     }
 }
