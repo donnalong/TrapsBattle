@@ -26,6 +26,14 @@
               Value="48" />
     </Style>
 
+    <Style x:Key="SlottedStyle"
+           TargetType="TextBlock">
+      <Setter Property="FontWeight"
+              Value="SemiBold" />
+      <Setter Property="FontSize"
+              Value="12" />
+    </Style>
+
     <Style x:Key="ContentGrid"
            TargetType="Grid">
       <Setter Property="HorizontalAlignment"
@@ -75,7 +83,47 @@
     <!--  Slotted View  -->
     <Grid x:Name="SlottedGrid"
           Style="{StaticResource ContentGrid}"
-          Visibility="{x:Bind Path=EffectSlotViewModel.SlottedEffects, Converter={StaticResource ContentCollectionToVisibility}, Mode=OneWay}" />
+          Visibility="{x:Bind Path=EffectSlotViewModel.SlottedEffects, Converter={StaticResource ContentCollectionToVisibility}, Mode=OneWay}">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+
+      <TextBlock x:Name="SlottedSuitBlock"
+                 Grid.Row="0"
+                 Grid.Column="0"
+                 Foreground="{x:Bind Path=EffectSlotViewModel.EffectSuit, Converter={StaticResource EffectSuitToColour}, Mode=OneWay}"
+                 Style="{StaticResource SlottedStyle}"
+                 Text="{x:Bind Path=EffectSlotViewModel.EffectSuit, Converter={StaticResource EffectSuitToString}, Mode=OneWay}" />
+
+      <TextBlock x:Name="SlottedClassBlock"
+                 Grid.Row="0"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="3"
+                 HorizontalAlignment="Center"
+                 Style="{StaticResource SlottedStyle}"
+                 Text="{x:Bind Path=EffectSlotViewModel.EffectClass, Converter={StaticResource EffectClassToString}, Mode=OneWay}" />
+
+      <TextBlock x:Name="SlottedLevelBlock"
+                 Grid.Row="0"
+                 Grid.Column="2"
+                 Style="{StaticResource SlottedStyle}"
+                 Text="{x:Bind Path=EffectSlotViewModel.EffectMaxLevel, Mode=OneWay}" />
+
+      <local:Effect x:Name="SlottedEffect"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Margin="0, 5, 0, 5"
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    EffectViewModel="{x:Bind Path=EffectSlotViewModel.ActiveEffect, Mode=OneWay}" />
+    </Grid>
 
   </Grid>
 </UserControl>

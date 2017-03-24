@@ -35,6 +35,19 @@ namespace TrapsBattle.ViewModels
             get;
         } = new ObservableCollection<EffectViewModel>();
 
+        public EffectViewModel ActiveEffect
+        {
+            get
+            {
+                if(SlottedEffects.Count > 0)
+                {
+                    return SlottedEffects[SlottedEffects.Count - 1];
+                }
+
+                return null;
+            }
+        }
+
         public EffectSlotViewModel()
         {
         }

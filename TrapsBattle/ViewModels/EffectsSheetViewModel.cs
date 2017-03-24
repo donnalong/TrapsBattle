@@ -95,7 +95,7 @@ namespace TrapsBattle.ViewModels
                 EffectMaxLevel = 2
             };
 
-            effectSlotVM.SlottedEffects.Add(Effects[0]);
+            effectSlotVM.SlottedEffects.Add(Effects[1]);
 
             Slots.Add(effectSlotVM);
         }
