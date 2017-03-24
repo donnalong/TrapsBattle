@@ -32,6 +32,8 @@
               Value="SemiBold" />
       <Setter Property="FontSize"
               Value="12" />
+      <Setter Property="Margin"
+              Value="5, 5, 5, 0" />
     </Style>
 
     <Style x:Key="ContentGrid"
@@ -46,6 +48,7 @@
   <Grid x:Name="EffectSlotGrid"
         Width="{x:Bind Path=Width}"
         MinHeight="{x:Bind Path=MinHeight}"
+        MaxWidth="{x:Bind Path=MaxWidth}"
         Margin="{x:Bind Path=Margin}"
         BorderBrush="{x:Bind Path=BorderBrush}"
         BorderThickness="{x:Bind Path=BorderThickness}"
@@ -115,15 +118,20 @@
                  Style="{StaticResource SlottedStyle}"
                  Text="{x:Bind Path=EffectSlotViewModel.EffectMaxLevel, Mode=OneWay}" />
 
-      <local:Effect x:Name="SlottedEffect"
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="3"
-                    Margin="0, 5, 0, 5"
-                    BorderBrush="Black"
-                    BorderThickness="1"
-                    EffectViewModel="{x:Bind Path=EffectSlotViewModel.ActiveEffect, Mode=OneWay}" />
-    </Grid>
+      <Grid x:Name="SlottedEffectGrid"
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            Margin="0, 5, 0, 5">
 
+        <local:Effect x:Name="SlottedEffect"
+                      Width="{x:Bind Path=Width}"
+                      Background="White"
+                      BorderBrush="Black"
+                      BorderThickness="1"
+                      EffectViewModel="{x:Bind Path=EffectSlotViewModel.ActiveEffect, Mode=OneWay}"
+                      OnEffectViewModelChanged="SlottedEffect_OnEffectViewModelChanged" />
+      </Grid>
+    </Grid>
   </Grid>
 </UserControl>

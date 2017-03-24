@@ -38,6 +38,7 @@
         <DataTemplate>
           <controls:EffectSlot Width="300"
                                MinHeight="150"
+                               MaxWidth="300"
                                Margin="0, 0, 0, 10"
                                BorderBrush="Black"
                                BorderThickness="2"

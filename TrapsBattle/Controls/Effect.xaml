@@ -20,6 +20,7 @@
   <Grid x:Name="EffectGrid"
         Width="{x:Bind Path=Width}"
         Margin="{x:Bind Path=Margin}"
+        Background="{x:Bind Path=Background}"
         BorderBrush="{x:Bind Path=BorderBrush}"
         BorderThickness="{x:Bind Path=BorderThickness}"
         Padding="{x:Bind Path=Padding}">
@@ -72,6 +73,7 @@
                Grid.Row="2"
                Grid.Column="0"
                Grid.ColumnSpan="3"
+               Width="{x:Bind EffectGrid.Width}"
                HorizontalAlignment="Center"
                Text="{x:Bind Path=EffectViewModel.Description, Mode=OneWay}"
                TextWrapping="WrapWholeWords" />
