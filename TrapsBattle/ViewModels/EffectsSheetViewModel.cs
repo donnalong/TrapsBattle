@@ -62,6 +62,26 @@ namespace TrapsBattle.ViewModels
                 Level = 1,
                 Description = "Flip to look at another character's effects"
             });
+
+            Effects.Add(new EffectViewModel()
+            {
+                Name = "Foresight",
+                Suit = EffectSuit.Mental,
+                Class = EffectClass.Utility,
+                Level = 1,
+                Description = "Flip to look at another character's effects (THIS SHOULD BE FLIPPED)",
+                IsFlipped = true
+            });
+
+            Effects.Add(new EffectViewModel()
+            {
+                Name = "Foresight",
+                Suit = EffectSuit.Control,
+                Class = EffectClass.Utility,
+                Level = 1,
+                Description = "Flip to look at another character's effects (THIS SHOULD BE FLIPPED)",
+                IsFlipped = true
+            });
         }
 
         private void InitSampleSlots()
@@ -101,6 +121,17 @@ namespace TrapsBattle.ViewModels
             };
 
             effectSlotVM.SlottedEffects.Add(Effects[3]);
+
+            Slots.Add(effectSlotVM);
+
+            effectSlotVM = new EffectSlotViewModel()
+            {
+                EffectSuit = EffectSuit.Control,
+                EffectClass = EffectClass.All,
+                EffectMaxLevel = 1
+            };
+
+            effectSlotVM.SlottedEffects.Add(Effects[4]);
 
             Slots.Add(effectSlotVM);
         }

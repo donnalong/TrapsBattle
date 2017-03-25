@@ -25,6 +25,7 @@ namespace TrapsBattle.ViewModels
 
     public class EffectViewModel : ViewModelBase
     {
+        #region Effect Stats
         private string name;
         public string Name
         {
@@ -59,6 +60,23 @@ namespace TrapsBattle.ViewModels
             get { return description; }
             set { SetProperty(ref description, value); }
         }
+        #endregion
+
+        #region Effect Modifiers
+        private bool isFlipped;
+        public bool IsFlipped
+        {
+            get { return isFlipped; }
+            set { SetProperty(ref isFlipped, value); }
+        }
+
+        private int counter;
+        public int Counter
+        {
+            get { return counter; }
+            set { SetProperty(ref counter, value); }
+        }
+        #endregion
 
         public EffectViewModel()
         {
