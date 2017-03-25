@@ -29,7 +29,7 @@
     <Style x:Key="SlottedStyle"
            TargetType="TextBlock">
       <Setter Property="FontWeight"
-              Value="SemiBold" />
+              Value="Bold" />
       <Setter Property="FontSize"
               Value="12" />
       <Setter Property="Margin"
@@ -125,12 +125,15 @@
             Margin="0, 5, 0, 5">
 
         <local:Effect x:Name="SlottedEffect"
-                      Width="{x:Bind Path=Width}"
                       Background="White"
                       BorderBrush="Black"
                       BorderThickness="1"
                       EffectViewModel="{x:Bind Path=EffectSlotViewModel.ActiveEffect, Mode=OneWay}"
-                      OnEffectViewModelChanged="SlottedEffect_OnEffectViewModelChanged" />
+                      OnEffectViewModelChanged="SlottedEffect_OnEffectViewModelChanged">
+          <local:Effect.RenderTransform>
+            <TranslateTransform x:Name="SlottedEffectTranslateTransform" />
+          </local:Effect.RenderTransform>
+        </local:Effect>
       </Grid>
     </Grid>
   </Grid>

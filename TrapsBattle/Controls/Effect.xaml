@@ -73,7 +73,6 @@
                Grid.Row="2"
                Grid.Column="0"
                Grid.ColumnSpan="3"
-               Width="{x:Bind EffectGrid.Width}"
                HorizontalAlignment="Center"
                Text="{x:Bind Path=EffectViewModel.Description, Mode=OneWay}"
                TextWrapping="WrapWholeWords" />

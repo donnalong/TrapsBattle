@@ -29,7 +29,7 @@ namespace TrapsBattle.Controls
             new SolidColorBrush(Colors.LightGray)
         };
 
-        private const int StackedCardPositionDelta = -5;
+        private const int StackedCardPositionDelta = 5;
 
         public EffectSlotViewModel EffectSlotViewModel
         {
@@ -75,18 +75,16 @@ namespace TrapsBattle.Controls
                     }
                 }
 
+                RecalculateWidths();
                 RepositionRects();
+                UpdateSlotHeight(numberRectsDifferent);
             }
         }
 
         private Border CreateNewBorder()
         {
             Border border = new Border();
-            Rectangle rect = new Rectangle();
             TranslateTransform transform = new TranslateTransform();
-
-            rect.Width = SlottedEffect.ActualWidth;
-            rect.Height = SlottedEffect.ActualHeight;
 
             border.BorderBrush = new SolidColorBrush(Colors.Black);
             border.BorderThickness = new Thickness(1);
@@ -99,7 +97,7 @@ namespace TrapsBattle.Controls
 
         private void RepositionRects()
         {
-            //Don't move the visible effect either
+            //Don't move the visible effect
             int blankRects = SlottedEffectGrid.Children.Count - 2;
 
             Border border;
@@ -113,10 +111,35 @@ namespace TrapsBattle.Controls
                 {
                     transform = border.RenderTransform as TranslateTransform;
 
-                    transform.X = StackedCardPositionDelta * (SlottedEffectGrid.Children.Count - i - 1);
-                    transform.Y = StackedCardPositionDelta * (SlottedEffectGrid.Children.Count - i - 1);
+                    transform.X = StackedCardPositionDelta * i;
+                    transform.Y = StackedCardPositionDelta * i;
                 }
             }
+
+            SlottedEffectTranslateTransform.X = StackedCardPositionDelta * (blankRects + 1);
+            SlottedEffectTranslateTransform.Y = StackedCardPositionDelta * (blankRects + 1);
+        }
+
+        private void RecalculateWidths()
+        {
+            double newWidth = (Width - 10) + ((SlottedEffectGrid.Children.Count - 1) * -(StackedCardPositionDelta * 2));
+
+            if (newWidth > 0)
+            {
+                foreach (FrameworkElement element in SlottedEffectGrid.Children)
+                {
+                    element.Width = newWidth;
+                }
+            }
+        }
+
+        private void UpdateSlotHeight(int numberRectsDifferent)
+        {
+            Thickness margin = SlottedEffectGrid.Margin;
+
+            margin.Bottom += numberRectsDifferent * StackedCardPositionDelta;
+
+            SlottedEffectGrid.Margin = margin;
         }
     }
 }
