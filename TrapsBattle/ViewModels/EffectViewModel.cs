@@ -8,6 +8,7 @@ namespace TrapsBattle.ViewModels
 {
     public enum EffectSuit
     {
+        All,
         Power,
         Control,
         Finesse,
@@ -16,6 +17,7 @@ namespace TrapsBattle.ViewModels
 
     public enum EffectClass
     {
+        All,
         Attack,
         Defense,
         Utility
