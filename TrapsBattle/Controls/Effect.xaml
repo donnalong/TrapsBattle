@@ -12,6 +12,7 @@
     <converters:EffectSuitToColourConverter x:Key="EffectSuitToColour" />
     <converters:BooleanToVisibilityConverter x:Key="FlippedIsVisible"
                                              TrueVisibility="Visible" />
+    <converters:IntegerToVisibilityConverter x:Key="IntegerToVisibility" />
 
 
     <Style TargetType="TextBlock">
@@ -96,5 +97,25 @@
                  Text="{x:Bind Path=EffectViewModel.Name, Mode=OneWay}"
                  TextWrapping="WrapWholeWords" />
     </Grid>
+
+    <!--  Counter  -->
+    <Border Width="30"
+            Height="30"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Background="PaleVioletRed"
+            BorderBrush="Black"
+            BorderThickness="1"
+            CornerRadius="180"
+            Visibility="{x:Bind Path=EffectViewModel.Counter, Converter={StaticResource IntegerToVisibility}, Mode=OneWay}">
+      <Border.RenderTransform>
+        <TranslateTransform X="10"
+                            Y="25" />
+      </Border.RenderTransform>
+      <TextBlock HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 Foreground="Black"
+                 Text="{x:Bind Path=EffectViewModel.Counter, Mode=OneWay}" />
+    </Border>
   </Grid>
 </UserControl>

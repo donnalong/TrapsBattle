@@ -42,7 +42,8 @@ namespace TrapsBattle.ViewModels
                 Suit = EffectSuit.Control,
                 Class = EffectClass.Defense,
                 Level = 1,
-                Description = "+2 Agility energizing effect, +3 resistence, may flip an opponent's Finesse effect when targetted"
+                Description = "+2 Agility energizing effect, +3 resistence, may flip an opponent's Finesse effect when targetted",
+                Counter = 2
             });
 
             Effects.Add(new EffectViewModel()
