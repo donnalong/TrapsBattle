@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace TrapsBattle.ViewModels
 {
     public enum EffectSuit
     {
+        All,
         Power,
         Control,
         Finesse,
@@ -16,6 +18,7 @@ namespace TrapsBattle.ViewModels
 
     public enum EffectClass
     {
+        All,
         Attack,
         Defense,
         Utility
@@ -23,6 +26,7 @@ namespace TrapsBattle.ViewModels
 
     public class EffectViewModel : ViewModelBase
     {
+        #region Effect Stats
         private string name;
         public string Name
         {
@@ -57,10 +61,29 @@ namespace TrapsBattle.ViewModels
             get { return description; }
             set { SetProperty(ref description, value); }
         }
+        #endregion
+
+        #region Effect Modifiers
+        private bool isFlipped;
+        public bool IsFlipped
+        {
+            get { return isFlipped; }
+            set { SetProperty(ref isFlipped, value); }
+        }
+
+        public ObservableCollection<int> Counters
+        {
+            get;
+        } = new ObservableCollection<int>();
+        #endregion
 
         public EffectViewModel()
         {
+        }
 
+        public void AddCounter(int counterLength)
+        {
+            Counters.Add(counterLength);
         }
     }
 }

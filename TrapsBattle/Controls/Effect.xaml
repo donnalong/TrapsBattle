@@ -10,6 +10,10 @@
              mc:Ignorable="d">
   <UserControl.Resources>
     <converters:EffectSuitToColourConverter x:Key="EffectSuitToColour" />
+    <converters:BooleanToVisibilityConverter x:Key="FlippedIsVisible"
+                                             TrueVisibility="Visible" />
+    <converters:IntegerToVisibilityConverter x:Key="IntegerToVisibility" />
+
 
     <Style TargetType="TextBlock">
       <Setter Property="Margin"
@@ -20,61 +24,114 @@
   <Grid x:Name="EffectGrid"
         Width="{x:Bind Path=Width}"
         Margin="{x:Bind Path=Margin}"
+        Background="{x:Bind Path=Background}"
         BorderBrush="{x:Bind Path=BorderBrush}"
         BorderThickness="{x:Bind Path=BorderThickness}"
         Padding="{x:Bind Path=Padding}">
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-    </Grid.RowDefinitions>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="Auto" />
-      <ColumnDefinition Width="*" />
-      <ColumnDefinition Width="Auto" />
-    </Grid.ColumnDefinitions>
 
-    <!--  Title Row  -->
-    <TextBlock x:Name="SuitBlock"
-               Grid.Row="0"
-               Grid.Column="0"
-               HorizontalAlignment="Left"
-               FontWeight="Bold"
-               Foreground="{x:Bind Path=EffectViewModel.Suit, Converter={StaticResource EffectSuitToColour}, Mode=OneWay}"
-               Text="{x:Bind Path=EffectViewModel.Suit, Mode=OneWay}" />
+    <Grid x:Name="UnflippedGrid">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
 
-    <TextBlock x:Name="ClassBlock"
-               Grid.Row="0"
-               Grid.Column="0"
-               Grid.ColumnSpan="3"
-               HorizontalAlignment="Center"
-               FontWeight="Bold"
-               Text="{x:Bind Path=EffectViewModel.Class, Mode=OneWay}" />
+      <!--  Title Row  -->
+      <TextBlock x:Name="SuitBlock"
+                 Grid.Row="0"
+                 Grid.Column="0"
+                 HorizontalAlignment="Left"
+                 FontWeight="Bold"
+                 Foreground="{x:Bind Path=EffectViewModel.Suit, Converter={StaticResource EffectSuitToColour}, Mode=OneWay}"
+                 Text="{x:Bind Path=EffectViewModel.Suit, Mode=OneWay}" />
 
-    <TextBlock x:Name="LevelBlock"
-               Grid.Row="0"
-               Grid.Column="2"
-               HorizontalAlignment="Right"
-               FontWeight="Bold"
-               Text="{x:Bind Path=EffectViewModel.Level, Mode=OneWay}" />
+      <TextBlock x:Name="ClassBlock"
+                 Grid.Row="0"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="3"
+                 HorizontalAlignment="Center"
+                 FontWeight="Bold"
+                 Text="{x:Bind Path=EffectViewModel.Class, Mode=OneWay}" />
 
-    <!--  Content  -->
-    <TextBlock x:Name="NameBlock"
-               Grid.Row="1"
-               Grid.Column="0"
-               Grid.ColumnSpan="3"
-               HorizontalAlignment="Center"
-               FontSize="20"
-               Text="{x:Bind Path=EffectViewModel.Name, Mode=OneWay}"
-               TextWrapping="WrapWholeWords" />
+      <TextBlock x:Name="LevelBlock"
+                 Grid.Row="0"
+                 Grid.Column="2"
+                 HorizontalAlignment="Right"
+                 FontWeight="Bold"
+                 Text="{x:Bind Path=EffectViewModel.Level, Mode=OneWay}" />
 
-    <TextBlock x:Name="DescriptionBlock"
-               Grid.Row="2"
-               Grid.Column="0"
-               Grid.ColumnSpan="3"
-               HorizontalAlignment="Center"
-               Text="{x:Bind Path=EffectViewModel.Description, Mode=OneWay}"
-               TextWrapping="WrapWholeWords" />
+      <!--  Content  -->
+      <TextBlock x:Name="NameBlock"
+                 Grid.Row="1"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="3"
+                 HorizontalAlignment="Center"
+                 FontSize="20"
+                 Text="{x:Bind Path=EffectViewModel.Name, Mode=OneWay}"
+                 TextWrapping="WrapWholeWords" />
+
+      <TextBlock x:Name="DescriptionBlock"
+                 Grid.Row="2"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="3"
+                 HorizontalAlignment="Center"
+                 Text="{x:Bind Path=EffectViewModel.Description, Mode=OneWay}"
+                 TextWrapping="WrapWholeWords" />
+    </Grid>
+
+    <!--  Flipped Grid  -->
+    <Grid Width="{x:Bind Path=UnflippedGrid.Width}"
+          Height="{x:Bind Path=UnflippedGrid.Height}"
+          Background="{x:Bind Path=EffectViewModel.Suit, Converter={StaticResource EffectSuitToColour}, Mode=OneWay}"
+          Visibility="{x:Bind Path=EffectViewModel.IsFlipped, Converter={StaticResource FlippedIsVisible}, Mode=OneWay}">
+      <TextBlock x:Name="FlippedNameBlock"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 FontSize="20"
+                 Foreground="White"
+                 Text="{x:Bind Path=EffectViewModel.Name, Mode=OneWay}"
+                 TextWrapping="WrapWholeWords" />
+    </Grid>
+
+    <!--  Counters  -->
+    <ListView x:Name="CounterList"
+              HorizontalAlignment="Right"
+              VerticalAlignment="Top"
+              ItemsSource="{x:Bind Path=EffectViewModel.Counters, Mode=OneWay}"
+              SelectionMode="None"
+              Visibility="{x:Bind Path=EffectViewModel.Counters.Count, Converter={StaticResource IntegerToVisibility}, Mode=OneWay}">
+      <ListView.RenderTransform>
+        <TranslateTransform X="77"
+                            Y="25" />
+      </ListView.RenderTransform>
+      <ListView.ItemContainerStyle>
+        <Style TargetType="ListViewItem">
+          <Setter Property="Margin"
+                  Value="5, -5" />
+        </Style>
+      </ListView.ItemContainerStyle>
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <Border Width="30"
+                  Height="30"
+                  Margin="-20"
+                  Background="PaleVioletRed"
+                  BorderBrush="Black"
+                  BorderThickness="1"
+                  CornerRadius="180">
+            <TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="Black"
+                       Text="{Binding}" />
+          </Border>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
 
   </Grid>
 </UserControl>

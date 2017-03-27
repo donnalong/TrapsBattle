@@ -24,50 +24,15 @@ namespace TrapsBattle
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public ObservableCollection<EffectViewModel> Effects = new ObservableCollection<EffectViewModel>();
+        public EffectsSheetViewModel EffectsSheetViewModel
+        {
+            get;
+        } = new EffectsSheetViewModel();
+
 
         public MainPage()
         {
             this.InitializeComponent();
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            Effects.Add(new EffectViewModel()
-            {
-                Name = "Mighty Blow",
-                Suit = EffectSuit.Power,
-                Class = EffectClass.Attack,
-                Level = 1,
-                Description = "x2 damage against targets with Stunned"
-            });
-
-            Effects.Add(new EffectViewModel()
-            {
-                Name = "Block",
-                Suit = EffectSuit.Control,
-                Class = EffectClass.Defense,
-                Level = 1,
-                Description = "+2 Agility energizing effect, +3 resistence, may flip an opponent's Finesse effect when targetted"
-            });
-
-            Effects.Add(new EffectViewModel()
-            {
-                Name = "Saboteur",
-                Suit = EffectSuit.Finesse,
-                Class = EffectClass.Utility,
-                Level = 1,
-                Description = "May choose to replace an effect of target's choice when inflicting sabotage effects"
-            });
-
-            Effects.Add(new EffectViewModel()
-            {
-                Name = "Foresight",
-                Suit = EffectSuit.Mental,
-                Class = EffectClass.Utility,
-                Level = 1,
-                Description = "Flip to look at another character's effects"
-            });
         }
     }
 }

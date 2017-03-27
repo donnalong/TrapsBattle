@@ -20,6 +20,8 @@ namespace TrapsBattle.Controls
 {
     public sealed partial class Effect : UserControl
     {
+        public event Action OnEffectViewModelChanged;
+
         public EffectViewModel EffectViewModel
         {
             get { return (EffectViewModel)GetValue(EffectViewModelProperty); }
@@ -28,7 +30,17 @@ namespace TrapsBattle.Controls
 
         // Using a DependencyProperty as the backing store for EffectViewModel.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EffectViewModelProperty =
-            DependencyProperty.Register("EffectViewModel", typeof(EffectViewModel), typeof(Effect), new PropertyMetadata(null));
+            DependencyProperty.Register("EffectViewModel", typeof(EffectViewModel), typeof(Effect), new PropertyMetadata(null, OnEffectViewModelPropertyChanged));
+
+        private static void OnEffectViewModelPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            Effect effect = (Effect)d;
+
+            if(effect != null)
+            {
+                effect.OnEffectViewModelChanged?.Invoke();
+            }
+        }
 
         public Effect()
         {
