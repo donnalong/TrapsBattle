@@ -36,15 +36,20 @@ namespace TrapsBattle.ViewModels
                 Description = "x2 damage against targets with Stunned"
             });
 
-            Effects.Add(new EffectViewModel()
+            EffectViewModel effect = new EffectViewModel()
             {
                 Name = "Block",
                 Suit = EffectSuit.Control,
                 Class = EffectClass.Defense,
                 Level = 1,
                 Description = "+2 Agility energizing effect, +3 resistence, may flip an opponent's Finesse effect when targetted",
-                Counter = 2
-            });
+            };
+
+            effect.AddCounter(2);
+            effect.AddCounter(4);
+            effect.AddCounter(1);
+
+            Effects.Add(effect);
 
             Effects.Add(new EffectViewModel()
             {
@@ -64,7 +69,7 @@ namespace TrapsBattle.ViewModels
                 Description = "Flip to look at another character's effects"
             });
 
-            Effects.Add(new EffectViewModel()
+            effect = new EffectViewModel()
             {
                 Name = "Foresight",
                 Suit = EffectSuit.Mental,
@@ -72,7 +77,11 @@ namespace TrapsBattle.ViewModels
                 Level = 1,
                 Description = "Flip to look at another character's effects (THIS SHOULD BE FLIPPED)",
                 IsFlipped = true
-            });
+            };
+
+            effect.AddCounter(3);
+
+            Effects.Add(effect);
 
             Effects.Add(new EffectViewModel()
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,16 +71,19 @@ namespace TrapsBattle.ViewModels
             set { SetProperty(ref isFlipped, value); }
         }
 
-        private int counter;
-        public int Counter
+        public ObservableCollection<int> Counters
         {
-            get { return counter; }
-            set { SetProperty(ref counter, value); }
-        }
+            get;
+        } = new ObservableCollection<int>();
         #endregion
 
         public EffectViewModel()
         {
+        }
+
+        public void AddCounter(int counterLength)
+        {
+            Counters.Add(counterLength);
         }
     }
 }

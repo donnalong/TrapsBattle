@@ -98,24 +98,40 @@
                  TextWrapping="WrapWholeWords" />
     </Grid>
 
-    <!--  Counter  -->
-    <Border Width="30"
-            Height="30"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
-            Background="PaleVioletRed"
-            BorderBrush="Black"
-            BorderThickness="1"
-            CornerRadius="180"
-            Visibility="{x:Bind Path=EffectViewModel.Counter, Converter={StaticResource IntegerToVisibility}, Mode=OneWay}">
-      <Border.RenderTransform>
-        <TranslateTransform X="10"
+    <!--  Counters  -->
+    <ListView x:Name="CounterList"
+              HorizontalAlignment="Right"
+              VerticalAlignment="Top"
+              ItemsSource="{x:Bind Path=EffectViewModel.Counters, Mode=OneWay}"
+              SelectionMode="None"
+              Visibility="{x:Bind Path=EffectViewModel.Counters.Count, Converter={StaticResource IntegerToVisibility}, Mode=OneWay}">
+      <ListView.RenderTransform>
+        <TranslateTransform X="77"
                             Y="25" />
-      </Border.RenderTransform>
-      <TextBlock HorizontalAlignment="Center"
-                 VerticalAlignment="Center"
-                 Foreground="Black"
-                 Text="{x:Bind Path=EffectViewModel.Counter, Mode=OneWay}" />
-    </Border>
+      </ListView.RenderTransform>
+      <ListView.ItemContainerStyle>
+        <Style TargetType="ListViewItem">
+          <Setter Property="Margin"
+                  Value="5, -5" />
+        </Style>
+      </ListView.ItemContainerStyle>
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <Border Width="30"
+                  Height="30"
+                  Margin="-20"
+                  Background="PaleVioletRed"
+                  BorderBrush="Black"
+                  BorderThickness="1"
+                  CornerRadius="180">
+            <TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="Black"
+                       Text="{Binding}" />
+          </Border>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+
   </Grid>
 </UserControl>
