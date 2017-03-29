@@ -34,5 +34,9 @@ namespace TrapsBattle.Controls
         {
             this.InitializeComponent();
         }
+
+        private void EffectSlotList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+        }
     }
 }
