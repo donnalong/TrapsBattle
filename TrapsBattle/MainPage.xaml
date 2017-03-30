@@ -8,11 +8,6 @@
       mc:Ignorable="d">
 
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="Auto" />
-      <ColumnDefinition Width="Auto" />
-    </Grid.ColumnDefinitions>
-
-    <controls:EffectsSheet EffectsSheetViewModel="{x:Bind Path=EffectsSheetViewModel, Mode=OneWay}" />
+    <controls:EffectsSheet EffectsSheetViewModel="{x:Bind Path=CharacterViewModel.EffectsSheet, Mode=OneWay}" />
   </Grid>
 </Page>

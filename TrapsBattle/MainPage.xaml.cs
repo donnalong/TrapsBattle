@@ -24,10 +24,10 @@ namespace TrapsBattle
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public EffectsSheetViewModel EffectsSheetViewModel
+        public CharacterViewModel CharacterViewModel
         {
             get;
-        } = new EffectsSheetViewModel();
+        } = new CharacterViewModel();
 
 
         public MainPage()
