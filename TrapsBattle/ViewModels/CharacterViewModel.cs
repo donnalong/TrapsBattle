@@ -75,10 +75,10 @@ namespace TrapsBattle.ViewModels
             get;
         } = new ObservableDictionary<Stat, int>();
 
-        public ObservableDictionary<Stat, int> DerivedStates
+        public ObservableDictionary<DerivedStat, int> DerivedStats
         {
             get;
-        } = new ObservableDictionary<Stat, int>();
+        } = new ObservableDictionary<DerivedStat, int>();
 
         private EffectsSheetViewModel effectSheet;
         public EffectsSheetViewModel EffectsSheet
@@ -106,15 +106,32 @@ namespace TrapsBattle.ViewModels
             Stats.Add(Stat.Agility, 4);
             Stats.Add(Stat.Cunning, 4);
             Stats.Add(Stat.Dexterity, 4);
-            Stats.Add(Stat.Health, 4);
-            Stats.Add(Stat.Intelligence, 4);
-            Stats.Add(Stat.Strength, 4);
-            Stats.Add(Stat.Willpower, 4);
+            Stats.Add(Stat.Health, 1);
+            Stats.Add(Stat.Intelligence, 3);
+            Stats.Add(Stat.Strength, 2);
+            Stats.Add(Stat.Willpower, 2);
+
+            CalculateDerivedStats();
+        }
+
+        private void CalculateDerivedStats()
+        {
+            DerivedStats.Add(DerivedStat.DamageReduction, Stats[Stat.Health]);
+            DerivedStats.Add(DerivedStat.Energy, Stats[Stat.Willpower]);
+            DerivedStats.Add(DerivedStat.Evade, Stats[Stat.Agility]);
+            DerivedStats.Add(DerivedStat.MentalDamage, Stats[Stat.Willpower]);
+            DerivedStats.Add(DerivedStat.MentalHit, Stats[Stat.Intelligence]);
+            DerivedStats.Add(DerivedStat.PhysicalDamage, Stats[Stat.Strength]);
+            DerivedStats.Add(DerivedStat.PhysicalHit, Stats[Stat.Dexterity]);
+            DerivedStats.Add(DerivedStat.Sabotage, Stats[Stat.Cunning]);
+            DerivedStats.Add(DerivedStat.SkillPoints, Stats[Stat.Cunning]);
+            DerivedStats.Add(DerivedStat.Slots, Stats[Stat.Intelligence]);
+            DerivedStats.Add(DerivedStat.Weight, Stats[Stat.Strength] + Stats[Stat.Health]);
         }
 
         private void InitSampleSlots()
         {
-            foreach(EffectViewModel effect in EffectViewModel.AllEffects)
+            foreach (EffectViewModel effect in EffectViewModel.AllEffects)
             {
                 EffectsSheet.Effects.Add(effect);
             }
