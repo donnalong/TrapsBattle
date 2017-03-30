@@ -45,73 +45,21 @@
                  Text="{x:Bind Path=CharacterViewModel.CharacterClass, Mode=OneWay}" />
     </StackPanel>
 
-    <ListView x:Name="CharacterStatListView"
-              Grid.Row="1"
-              Grid.Column="0"
-              BorderBrush="Black"
-              BorderThickness="0, 2, 2, 0"
-              ItemsSource="{x:Bind Path=CharacterViewModel.Stats, Mode=OneWay}">
-      <ListView.ItemContainerStyle>
-        <Style TargetType="ListViewItem">
-          <Setter Property="HorizontalContentAlignment"
-                  Value="Stretch" />
-        </Style>
-      </ListView.ItemContainerStyle>
-      <ListView.ItemTemplate>
-        <DataTemplate>
-          <Grid>
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="Auto" />
-              <ColumnDefinition Width="Auto" />
-              <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <TextBlock x:Name="StatNameTextBlock"
+    <local:StatDisplay x:Name="CharacterStatListView"
+                       Grid.Row="1"
                        Grid.Column="0"
-                       Text="{Binding Path=Key}" />
-            <TextBlock Grid.Column="1"
-                       Text=":" />
-            <TextBlock x:Name="StatValueTextBlock"
-                       Grid.Column="2"
-                       HorizontalAlignment="Right"
-                       Text="{Binding Path=Value}" />
-          </Grid>
-        </DataTemplate>
-      </ListView.ItemTemplate>
-    </ListView>
+                       BorderBrush="Black"
+                       BorderThickness="0, 2, 2, 0"
+                       ItemsSource="{x:Bind Path=CharacterViewModel.Stats, Mode=OneWay}"
+                       SelectionMode="None" />
 
-    <ListView x:Name="CharacterDerivedStatListView"
-              Grid.Row="1"
-              Grid.Column="1"
-              BorderBrush="Black"
-              BorderThickness="0, 2, 2, 0"
-              ItemsSource="{x:Bind Path=CharacterViewModel.DerivedStats, Mode=OneWay}">
-      <ListView.ItemContainerStyle>
-        <Style TargetType="ListViewItem">
-          <Setter Property="HorizontalContentAlignment"
-                  Value="Stretch" />
-        </Style>
-      </ListView.ItemContainerStyle>
-      <ListView.ItemTemplate>
-        <DataTemplate>
-          <Grid>
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="Auto" />
-              <ColumnDefinition Width="Auto" />
-              <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <TextBlock x:Name="DerivedStatNameTextBlock"
-                       Grid.Column="0"
-                       Text="{Binding Path=Key}" />
-            <TextBlock Grid.Column="1"
-                       Text=":" />
-            <TextBlock x:Name="DerivedStatValueTextBlock"
-                       Grid.Column="2"
-                       HorizontalAlignment="Right"
-                       Text="{Binding Path=Value}" />
-          </Grid>
-        </DataTemplate>
-      </ListView.ItemTemplate>
-    </ListView>
+    <local:StatDisplay x:Name="CharacterDerivedStatListView"
+                       Grid.Row="1"
+                       Grid.Column="1"
+                       BorderBrush="Black"
+                       BorderThickness="0, 2, 2, 0"
+                       ItemsSource="{x:Bind Path=CharacterViewModel.DerivedStats, Mode=OneWay}"
+                       SelectionMode="None" />
 
     <local:EffectsSheet x:Name="CharacterEffectsSheet"
                         Grid.Row="1"

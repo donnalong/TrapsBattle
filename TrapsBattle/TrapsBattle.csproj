@@ -107,6 +107,9 @@
     <Compile Include="Controls\EffectsSheet.xaml.cs">
       <DependentUpon>EffectsSheet.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\StatDisplay.xaml.cs">
+      <DependentUpon>StatDisplay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\IntegerToVisibilityConverter.cs" />
     <Compile Include="Converters\EffectClassToReducedStringConverter.cs" />
     <Compile Include="Converters\EffectSuitToReducedStringConverter.cs" />
@@ -158,6 +161,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\EffectsSheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\StatDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
