@@ -8,7 +8,12 @@
              d:DesignWidth="400"
              mc:Ignorable="d">
 
-  <Grid>
+  <Grid Width="{x:Bind Path=Width}"
+        Margin="{x:Bind Path=Margin}"
+        Background="{x:Bind Path=Background}"
+        BorderBrush="{x:Bind Path=BorderBrush}"
+        BorderThickness="{x:Bind Path=BorderThickness}"
+        Padding="{x:Bind Path=Padding}">
     <!--<local:VariableSizedGridView x:Name="EffectSlotList"
                                  Margin="10"
                                  HorizontalAlignment="Center"
@@ -44,14 +49,10 @@
     </local:VariableSizedGridView>-->
 
     <GridView x:Name="EffectSlotList"
-              Margin="10"
+              Margin="0, 0, 10, 10"
               HorizontalAlignment="Center"
-              BorderBrush="Black"
-              BorderThickness="2"
               ItemClick="EffectSlotList_ItemClick"
-              ItemsSource="{x:Bind Path=EffectsSheetViewModel.Slots, Mode=OneWay}"
-              Padding="10, 10, 20, 20"
-              SelectionMode="None">
+              ItemsSource="{x:Bind Path=EffectsSheetViewModel.Slots, Mode=OneWay}">
       <GridView.ItemsPanel>
         <ItemsPanelTemplate>
           <VariableSizedWrapGrid MaximumRowsOrColumns="2"

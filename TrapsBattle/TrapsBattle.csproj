@@ -108,6 +108,9 @@
       <DependentUpon>EffectsSheet.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Tools\VariableSizedGridView.cs" />
+    <Compile Include="Controls\StatDisplay.xaml.cs">
+      <DependentUpon>StatDisplay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\IntegerToVisibilityConverter.cs" />
     <Compile Include="Converters\EffectClassToReducedStringConverter.cs" />
     <Compile Include="Converters\EffectSuitToReducedStringConverter.cs" />
@@ -118,6 +121,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\ObservableDictionary.cs" />
     <Compile Include="ViewModels\CharacterViewModel.cs" />
     <Compile Include="ViewModels\EffectSlotViewModel.cs" />
     <Compile Include="ViewModels\EffectsSheetViewModel.cs" />
@@ -158,6 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\EffectsSheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\StatDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
