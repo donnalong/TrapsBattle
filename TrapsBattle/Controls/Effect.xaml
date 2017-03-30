@@ -14,7 +14,6 @@
                                              TrueVisibility="Visible" />
     <converters:IntegerToVisibilityConverter x:Key="IntegerToVisibility" />
 
-
     <Style TargetType="TextBlock">
       <Setter Property="Margin"
               Value="5" />
@@ -33,7 +32,7 @@
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto" />
         <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" />
       </Grid.RowDefinitions>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto" />

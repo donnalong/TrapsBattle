@@ -39,6 +39,7 @@ namespace TrapsBattle.Controls
 
                 Rect newPos = new Rect(x, y, maxWidth, maxHeight);
 
+                frameworkElement.Measure(new Size(maxWidth, maxHeight));
                 frameworkElement.Arrange(newPos);
 
                 y += maxHeight;

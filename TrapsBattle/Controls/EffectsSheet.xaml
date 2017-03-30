@@ -14,15 +14,10 @@
         BorderBrush="{x:Bind Path=BorderBrush}"
         BorderThickness="{x:Bind Path=BorderThickness}"
         Padding="{x:Bind Path=Padding}">
-    <!--<local:VariableSizedGridView x:Name="EffectSlotList"
-                                 Margin="10"
-                                 HorizontalAlignment="Center"
-                                 BorderBrush="Black"
-                                 BorderThickness="2"
+    <local:VariableSizedGridView x:Name="EffectSlotList"
+                                 Margin="0, 0, 10, 10"
                                  ItemClick="EffectSlotList_ItemClick"
-                                 ItemsSource="{x:Bind Path=EffectsSheetViewModel.Slots, Mode=OneWay}"
-                                 Padding="10, 10, 20, 20"
-                                 SelectionMode="None">
+                                 ItemsSource="{x:Bind Path=EffectsSheetViewModel.Slots, Mode=OneWay}">
       <local:VariableSizedGridView.ItemsPanel>
         <ItemsPanelTemplate>
           <VariableSizedWrapGrid MaximumRowsOrColumns="2"
@@ -33,50 +28,19 @@
         <Style TargetType="GridViewItem">
           <Setter Property="Margin"
                   Value="10, 10, 0, 0" />
+          <Setter Property="VerticalContentAlignment"
+                  Value="Stretch" />
         </Style>
       </local:VariableSizedGridView.ItemContainerStyle>
       <local:VariableSizedGridView.ItemTemplate>
         <DataTemplate>
           <local:EffectSlot Width="300"
                             MinHeight="150"
-                            MaxWidth="300"
-                            MaxHeight="300"
                             BorderBrush="Black"
                             BorderThickness="2"
                             EffectSlotViewModel="{Binding}" />
         </DataTemplate>
       </local:VariableSizedGridView.ItemTemplate>
-    </local:VariableSizedGridView>-->
-
-    <GridView x:Name="EffectSlotList"
-              Margin="0, 0, 10, 10"
-              HorizontalAlignment="Center"
-              ItemClick="EffectSlotList_ItemClick"
-              ItemsSource="{x:Bind Path=EffectsSheetViewModel.Slots, Mode=OneWay}">
-      <GridView.ItemsPanel>
-        <ItemsPanelTemplate>
-          <VariableSizedWrapGrid MaximumRowsOrColumns="2"
-                                 Orientation="Horizontal" />
-        </ItemsPanelTemplate>
-      </GridView.ItemsPanel>
-      <GridView.ItemContainerStyle>
-        <Style TargetType="GridViewItem">
-          <Setter Property="Margin"
-                  Value="10, 10, 0, 0" />
-        </Style>
-      </GridView.ItemContainerStyle>
-      <GridView.ItemTemplate>
-        <DataTemplate>
-          <local:EffectSlot Width="300"
-                            MinHeight="150"
-                            MaxWidth="300"
-                            MaxHeight="300"
-                            BorderBrush="Black"
-                            BorderThickness="2"
-                            EffectSlotViewModel="{Binding}" />
-        </DataTemplate>
-      </GridView.ItemTemplate>
-    </GridView>
-
+    </local:VariableSizedGridView>
   </Grid>
 </UserControl>
