@@ -9,6 +9,7 @@
              mc:Ignorable="d">
 
   <Grid Width="{x:Bind Path=Width}"
+        MinHeight="650"
         Margin="{x:Bind Path=Margin}"
         Background="{x:Bind Path=Background}"
         BorderBrush="{x:Bind Path=BorderBrush}"

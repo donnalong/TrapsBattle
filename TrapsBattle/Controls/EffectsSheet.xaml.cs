@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using TrapsBattle.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -37,6 +38,21 @@ namespace TrapsBattle.Controls
 
         private void EffectSlotList_ItemClick(object sender, ItemClickEventArgs e)
         {
+            GridViewItem effectSlot = EffectSlotList.ContainerFromItem(e.ClickedItem) as GridViewItem;
+
+            if(effectSlot != null)
+            {
+                SolidColorBrush brush = effectSlot.Background as SolidColorBrush;
+
+                if (brush != null && brush.Color == Colors.Gray)
+                {
+                    effectSlot.Background = new SolidColorBrush(Colors.White);
+                }
+                else
+                {
+                    effectSlot.Background = new SolidColorBrush(Colors.Gray);
+                }
+            }
         }
     }
 }

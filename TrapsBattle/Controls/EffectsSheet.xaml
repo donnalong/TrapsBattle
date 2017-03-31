@@ -8,7 +8,8 @@
              d:DesignWidth="400"
              mc:Ignorable="d">
 
-  <Grid Width="{x:Bind Path=Width}"
+  <Grid x:Name="EffectSheetGrid"
+        Width="{x:Bind Path=Width}"
         Margin="{x:Bind Path=Margin}"
         Background="{x:Bind Path=Background}"
         BorderBrush="{x:Bind Path=BorderBrush}"
@@ -16,8 +17,10 @@
         Padding="{x:Bind Path=Padding}">
     <local:VariableSizedGridView x:Name="EffectSlotList"
                                  Margin="0, 0, 10, 10"
+                                 IsItemClickEnabled="True"
                                  ItemClick="EffectSlotList_ItemClick"
-                                 ItemsSource="{x:Bind Path=EffectsSheetViewModel.Slots, Mode=OneWay}">
+                                 ItemsSource="{x:Bind Path=EffectsSheetViewModel.Slots, Mode=OneWay}"
+                                 SelectionMode="None">
       <local:VariableSizedGridView.ItemsPanel>
         <ItemsPanelTemplate>
           <VariableSizedWrapGrid MaximumRowsOrColumns="2"

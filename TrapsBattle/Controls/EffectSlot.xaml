@@ -50,6 +50,7 @@
         MinHeight="{x:Bind Path=MinHeight}"
         MaxWidth="{x:Bind Path=MaxWidth}"
         Margin="{x:Bind Path=Margin}"
+        Background="{x:Bind Path=Background}"
         BorderBrush="{x:Bind Path=BorderBrush}"
         BorderThickness="{x:Bind Path=BorderThickness}"
         Padding="{x:Bind Path=Padding}">
