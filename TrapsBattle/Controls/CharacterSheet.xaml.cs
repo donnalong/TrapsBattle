@@ -28,7 +28,12 @@ namespace TrapsBattle.Controls
 
         // Using a DependencyProperty as the backing store for CharacterViewModel.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CharacterViewModelProperty =
-            DependencyProperty.Register("CharacterViewModel", typeof(CharacterViewModel), typeof(CharacterSheet), new PropertyMetadata(null));
+            DependencyProperty.Register("CharacterViewModel", typeof(CharacterViewModel), typeof(CharacterSheet), new PropertyMetadata(null, OnCharacterViewModelChanged));
+
+        private static void OnCharacterViewModelChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Character Changed");
+        }
 
         public CharacterSheet()
         {

@@ -87,30 +87,19 @@ namespace TrapsBattle.ViewModels
             set { SetProperty(ref effectSheet, value); }
         }
 
-        public CharacterViewModel()
+        public CharacterViewModel(int agi, int cun, int dex, int hlt, int tel, int str, int wil)
         {
-            EffectViewModel.InitSampleEffects();
-
             EffectsSheet = new EffectsSheetViewModel();
 
-            InitTestCharacter();
+            Stats.Add(Stat.Agility, agi);
+            Stats.Add(Stat.Cunning, cun);
+            Stats.Add(Stat.Dexterity, dex);
+            Stats.Add(Stat.Health, hlt);
+            Stats.Add(Stat.Intelligence, tel);
+            Stats.Add(Stat.Strength, str);
+            Stats.Add(Stat.Willpower, wil);
+
             InitSampleSlots();
-        }
-
-        private void InitTestCharacter()
-        {
-            Name = "Sabetha";
-            Level = 3;
-            CharacterClass = CharacterClass.Rogue;
-
-            Stats.Add(Stat.Agility, 4);
-            Stats.Add(Stat.Cunning, 4);
-            Stats.Add(Stat.Dexterity, 4);
-            Stats.Add(Stat.Health, 1);
-            Stats.Add(Stat.Intelligence, 3);
-            Stats.Add(Stat.Strength, 2);
-            Stats.Add(Stat.Willpower, 2);
-
             CalculateDerivedStats();
         }
 
