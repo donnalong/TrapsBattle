@@ -29,10 +29,15 @@ namespace TrapsBattle
             get;
         } = new CharacterViewModel();
 
-
         public MainPage()
         {
             this.InitializeComponent();
         }
+
+        private void NewRoundButton_Click(object sender, RoutedEventArgs e)
+        {
+            CharacterViewModel.NextRound();
+        }
+
     }
 }

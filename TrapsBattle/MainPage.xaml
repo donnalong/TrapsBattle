@@ -7,9 +7,22 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
-  <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+  <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+        Padding="30">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Button x:Name="NewRoundButton"
+            Grid.Row="0"
+            Margin="10"
+            BorderBrush="Black"
+            BorderThickness="2"
+            Click="NewRoundButton_Click"
+            Content="Next Round" />
+
     <controls:CharacterSheet x:Name="CharacterSheet"
-                             Margin="30"
+                             Grid.Row="1"
                              BorderBrush="Black"
                              BorderThickness="2"
                              CharacterViewModel="{x:Bind Path=CharacterViewModel, Mode=OneWay}" />

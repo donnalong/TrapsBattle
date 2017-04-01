@@ -91,6 +91,22 @@ namespace TrapsBattle.ViewModels
             Counters.Add(counterLength);
         }
 
+        public void NextRound()
+        {
+            IsFlipped = false;
+            
+            for (int i = 0; i < Counters.Count; i++)
+            {
+                Counters[i]--;
+
+                if (Counters[i] == 0)
+                {
+                    Counters.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+
         #region All Effects
         public static void InitSampleEffects()
         {

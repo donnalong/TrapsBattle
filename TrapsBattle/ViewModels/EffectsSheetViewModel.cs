@@ -22,5 +22,13 @@ namespace TrapsBattle.ViewModels
         public EffectsSheetViewModel()
         {
         }
+
+        internal void NextRound()
+        {
+            foreach (EffectSlotViewModel effectSlot in Slots)
+            {
+                effectSlot.NextRound();
+            }
+        }
     }
 }

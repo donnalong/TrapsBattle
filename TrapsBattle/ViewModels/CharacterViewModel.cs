@@ -185,5 +185,10 @@ namespace TrapsBattle.ViewModels
 
             EffectsSheet.Slots.Add(effectSlotVM);
         }
+
+        public void NextRound()
+        {
+            EffectsSheet.NextRound();
+        }
     }
 }

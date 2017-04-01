@@ -51,5 +51,13 @@ namespace TrapsBattle.ViewModels
         public EffectSlotViewModel()
         {
         }
+
+        public void NextRound()
+        {
+            if(ActiveEffect != null)
+            {
+                ActiveEffect.NextRound();
+            }
+        }
     }
 }
