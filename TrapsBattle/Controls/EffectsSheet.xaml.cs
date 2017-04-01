@@ -38,20 +38,11 @@ namespace TrapsBattle.Controls
 
         private void EffectSlotList_ItemClick(object sender, ItemClickEventArgs e)
         {
-            GridViewItem effectSlot = EffectSlotList.ContainerFromItem(e.ClickedItem) as GridViewItem;
+            EffectSlotViewModel effectSlot = e.ClickedItem as EffectSlotViewModel;
 
             if(effectSlot != null)
             {
-                SolidColorBrush brush = effectSlot.Background as SolidColorBrush;
-
-                if (brush != null && brush.Color == Colors.Gray)
-                {
-                    effectSlot.Background = new SolidColorBrush(Colors.White);
-                }
-                else
-                {
-                    effectSlot.Background = new SolidColorBrush(Colors.Gray);
-                }
+                effectSlot.ToggleFlipActiveEffect();
             }
         }
     }

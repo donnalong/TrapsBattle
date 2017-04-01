@@ -52,6 +52,14 @@ namespace TrapsBattle.ViewModels
         {
         }
 
+        public void FlipActiveEffect()
+        {
+            if(ActiveEffect != null)
+            {
+                ActiveEffect.IsFlipped = !ActiveEffect.IsFlipped;
+            }
+        }
+
         public void NextRound()
         {
             if(ActiveEffect != null)
