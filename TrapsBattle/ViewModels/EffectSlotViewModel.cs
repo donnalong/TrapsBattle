@@ -52,7 +52,7 @@ namespace TrapsBattle.ViewModels
         {
         }
 
-        public void FlipActiveEffect()
+        public void ToggleFlipActiveEffect()
         {
             if(ActiveEffect != null)
             {
