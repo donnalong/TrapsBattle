@@ -9,11 +9,6 @@ namespace TrapsBattle.ViewModels
 {
     public class EffectsSheetViewModel : ViewModelBase
     {
-        public ObservableCollection<EffectViewModel> Effects
-        {
-            get;
-        } = new ObservableCollection<EffectViewModel>();
-
         public ObservableCollection<EffectSlotViewModel> Slots
         {
             get;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,6 +88,11 @@ namespace TrapsBattle.ViewModels
             set { SetProperty(ref effectSheet, value); }
         }
 
+        public ObservableCollection<EffectViewModel> Effects
+        {
+            get;
+        } = new ObservableCollection<EffectViewModel>();
+
         public CharacterViewModel()
         {
             EffectViewModel.InitSampleEffects();
@@ -133,7 +139,7 @@ namespace TrapsBattle.ViewModels
         {
             foreach (EffectViewModel effect in EffectViewModel.AllEffects)
             {
-                EffectsSheet.Effects.Add(effect);
+                Effects.Add(effect);
             }
 
             EffectsSheet.Slots.Add(new EffectSlotViewModel()
@@ -157,9 +163,9 @@ namespace TrapsBattle.ViewModels
                 EffectMaxLevel = 2
             };
 
-            effectSlotVM.SlottedEffects.Add(EffectsSheet.Effects[0]);
-            effectSlotVM.SlottedEffects.Add(EffectsSheet.Effects[2]);
-            effectSlotVM.SlottedEffects.Add(EffectsSheet.Effects[1]);
+            effectSlotVM.SlottedEffects.Add(new EffectViewModel(Effects[0]));
+            effectSlotVM.SlottedEffects.Add(new EffectViewModel(Effects[2]));
+            effectSlotVM.SlottedEffects.Add(new EffectViewModel(Effects[1]));
 
             EffectsSheet.Slots.Add(effectSlotVM);
 
@@ -170,7 +176,7 @@ namespace TrapsBattle.ViewModels
                 EffectMaxLevel = 1
             };
 
-            effectSlotVM.SlottedEffects.Add(EffectsSheet.Effects[3]);
+            effectSlotVM.SlottedEffects.Add(new EffectViewModel(Effects[3]));
 
             EffectsSheet.Slots.Add(effectSlotVM);
 
@@ -181,7 +187,7 @@ namespace TrapsBattle.ViewModels
                 EffectMaxLevel = 1
             };
 
-            effectSlotVM.SlottedEffects.Add(EffectsSheet.Effects[4]);
+            effectSlotVM.SlottedEffects.Add(new EffectViewModel(Effects[4]));
 
             EffectsSheet.Slots.Add(effectSlotVM);
         }

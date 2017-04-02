@@ -86,6 +86,14 @@ namespace TrapsBattle.ViewModels
         {
         }
 
+        public EffectViewModel(EffectViewModel copy)
+        {
+            Name = copy.Name;
+            Suit = copy.Suit;
+            Level = copy.Level;
+            Description = copy.Description;
+        }
+
         public void AddCounter(int counterLength)
         {
             Counters.Add(counterLength);

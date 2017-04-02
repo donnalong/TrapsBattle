@@ -19,6 +19,7 @@
       <ColumnDefinition Width="Auto" />
       <ColumnDefinition Width="Auto" />
       <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="Auto" />
     </Grid.ColumnDefinitions>
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
@@ -27,7 +28,7 @@
 
     <StackPanel Grid.Row="0"
                 Grid.Column="0"
-                Grid.ColumnSpan="3"
+                Grid.ColumnSpan="4"
                 Margin="10">
       <TextBlock x:Name="NameTextBlock"
                  FontSize="24"
@@ -66,7 +67,30 @@
                         Grid.Row="1"
                         Grid.Column="2"
                         BorderBrush="Black"
-                        BorderThickness="0, 2, 0, 0"
+                        BorderThickness="0, 2, 2, 0"
                         EffectsSheetViewModel="{x:Bind Path=CharacterViewModel.EffectsSheet, Mode=OneWay}" />
+
+    <ListView x:Name="PossibleEffectsList"
+              Grid.Row="1"
+              Grid.Column="3"
+              BorderBrush="Black"
+              BorderThickness="0, 2, 2, 0"
+              ItemsSource="{x:Bind Path=CharacterViewModel.Effects, Mode=OneWay}"
+              Padding="0, 10, 0, 0"
+              ScrollViewer.VerticalScrollBarVisibility="Hidden">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <local:Effect Width="300"
+                        Margin="0, 0, 0, 10"
+                        BorderBrush="Black"
+                        BorderThickness="2"
+                        EffectViewModel="{Binding}">
+            <local:Effect.RenderTransform>
+              <TranslateTransform x:Name="EffectTranslateTransform" />
+            </local:Effect.RenderTransform>
+          </local:Effect>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
   </Grid>
 </UserControl>
