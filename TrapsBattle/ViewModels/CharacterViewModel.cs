@@ -93,6 +93,13 @@ namespace TrapsBattle.ViewModels
             get;
         } = new ObservableCollection<EffectViewModel>();
 
+        private EffectViewModel selectedEffect = null;
+        public EffectViewModel SelectedEffect
+        {
+            get { return selectedEffect; }
+            set { SetProperty(ref selectedEffect, value); }
+        }
+
         public CharacterViewModel()
         {
             EffectViewModel.InitSampleEffects();

@@ -21,6 +21,16 @@ namespace TrapsBattle.Controls
 {
     public sealed partial class EffectsSheet : UserControl
     {
+        public CharacterViewModel CharacterViewModel
+        {
+            get { return (CharacterViewModel)GetValue(CharacterViewModelProperty); }
+            set { SetValue(CharacterViewModelProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for CharacterViewModel.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CharacterViewModelProperty =
+            DependencyProperty.Register("CharacterViewModel", typeof(CharacterViewModel), typeof(EffectsSheet), new PropertyMetadata(null));
+
         public EffectsSheetViewModel EffectsSheetViewModel
         {
             get { return (EffectsSheetViewModel)GetValue(EffectsSheetViewModelProperty); }
@@ -40,9 +50,21 @@ namespace TrapsBattle.Controls
         {
             EffectSlotViewModel effectSlot = e.ClickedItem as EffectSlotViewModel;
 
-            if(effectSlot != null)
+            if (effectSlot != null)
             {
-                effectSlot.ToggleFlipActiveEffect();
+                if (effectSlot.ActiveEffect == null)
+                {
+                    if (CharacterViewModel.SelectedEffect != null)
+                    {
+                        effectSlot.SlottedEffects.Add(new EffectViewModel(CharacterViewModel.SelectedEffect));
+                        
+                        CharacterViewModel.SelectedEffect = null;
+                    }
+                }
+                else
+                {
+                    effectSlot.ToggleFlipActiveEffect();
+                }
             }
         }
     }

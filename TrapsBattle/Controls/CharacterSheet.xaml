@@ -3,10 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="using:TrapsBattle.Controls"
+             xmlns:converters="using:TrapsBattle.Converters"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DesignHeight="300"
              d:DesignWidth="400"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:EffectViewModelToObjectConverter x:Key="EffectViewModelToObjectConverter"/>
+    </UserControl.Resources>
 
   <Grid Width="{x:Bind Path=Width}"
         MinHeight="650"
@@ -68,7 +72,8 @@
                         Grid.Column="2"
                         BorderBrush="Black"
                         BorderThickness="0, 2, 2, 0"
-                        EffectsSheetViewModel="{x:Bind Path=CharacterViewModel.EffectsSheet, Mode=OneWay}" />
+                        EffectsSheetViewModel="{x:Bind Path=CharacterViewModel.EffectsSheet, Mode=OneWay}"
+                        CharacterViewModel="{x:Bind Path=CharacterViewModel, Mode=OneWay}"/>
 
     <ListView x:Name="PossibleEffectsList"
               Grid.Row="1"
@@ -77,6 +82,7 @@
               BorderThickness="0, 2, 2, 0"
               ItemsSource="{x:Bind Path=CharacterViewModel.Effects, Mode=OneWay}"
               Padding="0, 10, 0, 0"
+              SelectedItem="{x:Bind Path=CharacterViewModel.SelectedEffect, Converter={StaticResource EffectViewModelToObjectConverter}, Mode=TwoWay}"
               ScrollViewer.VerticalScrollBarVisibility="Hidden">
       <ListView.ItemTemplate>
         <DataTemplate>

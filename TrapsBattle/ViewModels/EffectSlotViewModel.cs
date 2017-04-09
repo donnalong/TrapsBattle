@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,6 +51,12 @@ namespace TrapsBattle.ViewModels
 
         public EffectSlotViewModel()
         {
+            SlottedEffects.CollectionChanged += SlottedEffects_CollectionChanged;
+        }
+
+        private void SlottedEffects_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(ActiveEffect));
         }
 
         public void ToggleFlipActiveEffect()
