@@ -115,7 +115,6 @@
     <Compile Include="Converters\IntegerToVisibilityConverter.cs" />
     <Compile Include="Converters\EffectClassToReducedStringConverter.cs" />
     <Compile Include="Converters\EffectSuitToReducedStringConverter.cs" />
-    <Compile Include="Converters\CollectionToVisibilityConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\EffectSuitToColourConverter.cs" />
     <Compile Include="MainPage.xaml.cs">

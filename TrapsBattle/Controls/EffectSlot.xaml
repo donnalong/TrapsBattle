@@ -8,15 +8,15 @@
              d:DesignHeight="300"
              d:DesignWidth="400"
              mc:Ignorable="d">
-  <UserControl.Resources>
-    <converters:CollectionToVisibilityConverter x:Key="EmptyCollectionToVisibility"
-                                                EmptyVisibility="Visible" />
-    <converters:CollectionToVisibilityConverter x:Key="ContentCollectionToVisibility"
-                                                EmptyVisibility="Collapsed" />
+    <UserControl.Resources>
+      <converters:IntegerToVisibilityConverter x:Key="EmptyCollectionToVisible" 
+                                               GreaterThanZeroVisibility="Collapsed"/>
+      <converters:IntegerToVisibilityConverter x:Key="EmptyCollectionToCollapsed" 
+                                               GreaterThanZeroVisibility="Visible"/>
 
-    <converters:EffectSuitToColourConverter x:Key="EffectSuitToColour" />
-    <converters:EffectSuitToReducedStringConverter x:Key="EffectSuitToString" />
-    <converters:EffectClassToReducedStringConverter x:Key="EffectClassToString" />
+      <converters:EffectSuitToColourConverter x:Key="EffectSuitToColour" />
+      <converters:EffectSuitToReducedStringConverter x:Key="EffectSuitToString" />
+      <converters:EffectClassToReducedStringConverter x:Key="EffectClassToString" />
 
     <Style x:Key="UnslottedStyle"
            TargetType="TextBlock">
@@ -58,7 +58,7 @@
     <!--  Unslotted View  -->
     <Grid x:Name="UnslottedGrid"
           Style="{StaticResource ContentGrid}"
-          Visibility="{x:Bind Path=EffectSlotViewModel.SlottedEffects, Converter={StaticResource EmptyCollectionToVisibility}, Mode=OneWay}">
+          Visibility="{x:Bind Path=EffectSlotViewModel.SlottedEffects.Count, Converter={StaticResource EmptyCollectionToVisible}, Mode=OneWay}">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto" />
         <ColumnDefinition Width="Auto" />
@@ -87,7 +87,7 @@
     <!--  Slotted View  -->
     <Grid x:Name="SlottedGrid"
           Style="{StaticResource ContentGrid}"
-          Visibility="{x:Bind Path=EffectSlotViewModel.SlottedEffects, Converter={StaticResource ContentCollectionToVisibility}, Mode=OneWay}">
+          Visibility="{x:Bind Path=EffectSlotViewModel.SlottedEffects.Count, Converter={StaticResource EmptyCollectionToCollapsed}, Mode=OneWay}">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto" />
         <ColumnDefinition Width="*" />

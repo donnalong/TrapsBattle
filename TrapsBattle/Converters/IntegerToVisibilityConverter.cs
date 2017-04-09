@@ -10,11 +10,20 @@ namespace TrapsBattle.Converters
 {
     public class IntegerToVisibilityConverter : IValueConverter
     {
+        public Visibility GreaterThanZeroVisibility { get; set; } = Visibility.Visible;
+
+        public Visibility ZeroVisibility
+        {
+            get
+            {
+                return GreaterThanZeroVisibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+            }
+        }
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             int number = (int)value;
 
-            return number > 0 ? Visibility.Visible : Visibility.Collapsed;
+            return number > 0 ? GreaterThanZeroVisibility : ZeroVisibility;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
