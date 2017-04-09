@@ -40,7 +40,7 @@ namespace TrapsBattle.ViewModels
         {
             get
             {
-                if(SlottedEffects.Count > 0)
+                if (SlottedEffects.Count > 0)
                 {
                     return SlottedEffects[SlottedEffects.Count - 1];
                 }
@@ -61,7 +61,7 @@ namespace TrapsBattle.ViewModels
 
         public void ToggleFlipActiveEffect()
         {
-            if(ActiveEffect != null)
+            if (ActiveEffect != null)
             {
                 ActiveEffect.IsFlipped = !ActiveEffect.IsFlipped;
             }
@@ -69,10 +69,20 @@ namespace TrapsBattle.ViewModels
 
         public void NextRound()
         {
-            if(ActiveEffect != null)
+            if (ActiveEffect != null)
             {
                 ActiveEffect.NextRound();
             }
+        }
+
+        internal void PushEffect(EffectViewModel effectViewModel)
+        {
+            SlottedEffects.Add(effectViewModel);
+        }
+
+        internal void PopEffect()
+        {
+            SlottedEffects.Remove(ActiveEffect);
         }
     }
 }

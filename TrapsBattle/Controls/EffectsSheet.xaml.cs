@@ -48,19 +48,34 @@ namespace TrapsBattle.Controls
 
         private void EffectSlotList_ItemClick(object sender, ItemClickEventArgs e)
         {
-            EffectSlotViewModel effectSlot = e.ClickedItem as EffectSlotViewModel;
+            EffectSlotViewModel effectSlotviewModel = e.ClickedItem as EffectSlotViewModel;
 
-            if (effectSlot != null)
+            if (effectSlotviewModel != null)
             {
                 if (CharacterViewModel.SelectedEffect != null)
                 {
-                    effectSlot.SlottedEffects.Add(new EffectViewModel(CharacterViewModel.SelectedEffect));
+                    effectSlotviewModel.PushEffect(new EffectViewModel(CharacterViewModel.SelectedEffect));
 
                     CharacterViewModel.SelectedEffect = null;
                 }
                 else
                 {
-                    effectSlot.ToggleFlipActiveEffect();
+                    effectSlotviewModel.ToggleFlipActiveEffect();
+                }
+            }
+        }
+
+        private void EffectSlotList_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            ListViewItemPresenter itemPresenter = e.OriginalSource as ListViewItemPresenter;
+
+            if(itemPresenter != null)
+            {
+                EffectSlotViewModel effectSlotViewModel = itemPresenter.Content as EffectSlotViewModel;
+
+                if(effectSlotViewModel != null)
+                {
+                    effectSlotViewModel.PopEffect();
                 }
             }
         }
