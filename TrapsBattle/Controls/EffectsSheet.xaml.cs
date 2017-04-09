@@ -52,14 +52,11 @@ namespace TrapsBattle.Controls
 
             if (effectSlot != null)
             {
-                if (effectSlot.ActiveEffect == null)
+                if (CharacterViewModel.SelectedEffect != null)
                 {
-                    if (CharacterViewModel.SelectedEffect != null)
-                    {
-                        effectSlot.SlottedEffects.Add(new EffectViewModel(CharacterViewModel.SelectedEffect));
-                        
-                        CharacterViewModel.SelectedEffect = null;
-                    }
+                    effectSlot.SlottedEffects.Add(new EffectViewModel(CharacterViewModel.SelectedEffect));
+
+                    CharacterViewModel.SelectedEffect = null;
                 }
                 else
                 {
