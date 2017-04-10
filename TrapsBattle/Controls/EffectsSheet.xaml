@@ -18,26 +18,31 @@
         BorderBrush="{x:Bind Path=BorderBrush}"
         BorderThickness="{x:Bind Path=BorderThickness}">
 
-        <local:VariableSizedGridView
+        <GridView
             x:Name="EffectSlotList"
             Margin="0,0,10,10"
             DoubleTapped="EffectSlotList_DoubleTapped"
             IsItemClickEnabled="True"
             ItemClick="EffectSlotList_ItemClick"
             ItemsSource="{x:Bind Path=EffectsSheetViewModel.Slots, Mode=OneWay}"
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            ScrollViewer.HorizontalScrollMode="Enabled"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            ScrollViewer.VerticalScrollMode="Enabled"
             SelectionMode="None">
-            <local:VariableSizedGridView.ItemsPanel>
+            <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <VariableSizedWrapGrid MaximumRowsOrColumns="2" Orientation="Horizontal" />
+                    <local:VariableSizedPanel Height="650" />
                 </ItemsPanelTemplate>
-            </local:VariableSizedGridView.ItemsPanel>
-            <local:VariableSizedGridView.ItemContainerStyle>
+            </GridView.ItemsPanel>
+            <GridView.ItemContainerStyle>
                 <Style TargetType="GridViewItem">
                     <Setter Property="Margin" Value="10,10,0,0" />
                     <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                 </Style>
-            </local:VariableSizedGridView.ItemContainerStyle>
-            <local:VariableSizedGridView.ItemTemplate>
+            </GridView.ItemContainerStyle>
+            <GridView.ItemTemplate>
                 <DataTemplate>
                     <local:EffectSlot
                         Width="300"
@@ -46,7 +51,7 @@
                         BorderThickness="2"
                         EffectSlotViewModel="{Binding}" />
                 </DataTemplate>
-            </local:VariableSizedGridView.ItemTemplate>
-        </local:VariableSizedGridView>
+            </GridView.ItemTemplate>
+        </GridView>
     </Grid>
 </UserControl>

@@ -107,7 +107,7 @@
     <Compile Include="Controls\EffectsSheet.xaml.cs">
       <DependentUpon>EffectsSheet.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Tools\VariableSizedGridView.cs" />
+    <Compile Include="Controls\Tools\CustomPanel.cs" />
     <Compile Include="Controls\StatDisplay.xaml.cs">
       <DependentUpon>StatDisplay.xaml</DependentUpon>
     </Compile>

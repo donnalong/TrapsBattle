@@ -163,40 +163,26 @@ namespace TrapsBattle.ViewModels
                 EffectMaxLevel = 1
             });
 
-            EffectSlotViewModel effectSlotVM = new EffectSlotViewModel()
+            EffectsSheet.Slots.Add(new EffectSlotViewModel()
             {
                 EffectSuit = EffectSuit.All,
                 EffectClass = EffectClass.Utility,
                 EffectMaxLevel = 2
-            };
+            });
 
-            effectSlotVM.SlottedEffects.Add(new EffectViewModel(Effects[0]));
-            effectSlotVM.SlottedEffects.Add(new EffectViewModel(Effects[2]));
-            effectSlotVM.SlottedEffects.Add(new EffectViewModel(Effects[1]));
-
-            EffectsSheet.Slots.Add(effectSlotVM);
-
-            effectSlotVM = new EffectSlotViewModel()
+            EffectsSheet.Slots.Add(new EffectSlotViewModel()
             {
                 EffectSuit = EffectSuit.Control,
                 EffectClass = EffectClass.All,
                 EffectMaxLevel = 1
-            };
+            });
 
-            effectSlotVM.SlottedEffects.Add(new EffectViewModel(Effects[3]));
-
-            EffectsSheet.Slots.Add(effectSlotVM);
-
-            effectSlotVM = new EffectSlotViewModel()
+            EffectsSheet.Slots.Add(new EffectSlotViewModel()
             {
                 EffectSuit = EffectSuit.Control,
                 EffectClass = EffectClass.All,
                 EffectMaxLevel = 1
-            };
-
-            effectSlotVM.SlottedEffects.Add(new EffectViewModel(Effects[4]));
-
-            EffectsSheet.Slots.Add(effectSlotVM);
+            });
         }
 
         public void NextRound()
