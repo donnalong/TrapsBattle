@@ -7,44 +7,24 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
-  <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="Auto" />
-      <ColumnDefinition Width="Auto" />
-    </Grid.ColumnDefinitions>
+  <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+        Padding="30">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Button x:Name="NewRoundButton"
+            Grid.Row="0"
+            Margin="10"
+            BorderBrush="Black"
+            BorderThickness="2"
+            Click="NewRoundButton_Click"
+            Content="Next Round" />
 
-    <ListView x:Name="EffectList"
-              Grid.Column="0"
-              Margin="10, 20"
-              HorizontalAlignment="Center"
-              ItemsSource="{x:Bind Path=EffectsSheetViewModel.Effects, Mode=OneWay}">
-      <ListView.ItemTemplate>
-        <DataTemplate>
-          <controls:Effect Width="300"
-                           Margin="0, 0, 0, 10"
-                           BorderBrush="Black"
-                           BorderThickness="2"
-                           EffectViewModel="{Binding}" />
-        </DataTemplate>
-      </ListView.ItemTemplate>
-    </ListView>
-
-    <ListView x:Name="EffectSlotList"
-              Grid.Column="1"
-              Margin="10, 20"
-              HorizontalAlignment="Center"
-              ItemsSource="{x:Bind Path=EffectsSheetViewModel.Slots, Mode=OneWay}">
-      <ListView.ItemTemplate>
-        <DataTemplate>
-          <controls:EffectSlot Width="300"
-                               MinHeight="150"
-                               MaxWidth="300"
-                               Margin="0, 0, 0, 10"
-                               BorderBrush="Black"
-                               BorderThickness="2"
-                               EffectSlotViewModel="{Binding}" />
-        </DataTemplate>
-      </ListView.ItemTemplate>
-    </ListView>
+    <controls:CharacterSheet x:Name="CharacterSheet"
+                             Grid.Row="1"
+                             BorderBrush="Black"
+                             BorderThickness="2"
+                             CharacterViewModel="{x:Bind Path=CharacterViewModel, Mode=OneWay}" />
   </Grid>
 </Page>
