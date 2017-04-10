@@ -115,6 +115,7 @@
       <DependentUpon>StatDisplay.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\EffectViewModelToObjectConverter.cs" />
+    <Compile Include="Converters\CounterIntegerToVisibilityConverter.cs" />
     <Compile Include="Converters\IntegerToVisibilityConverter.cs" />
     <Compile Include="Converters\EffectClassToReducedStringConverter.cs" />
     <Compile Include="Converters\EffectSuitToReducedStringConverter.cs" />

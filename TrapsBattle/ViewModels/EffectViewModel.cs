@@ -68,18 +68,52 @@ namespace TrapsBattle.ViewModels
         }
         #endregion
 
+        private bool isSlotted;
+        public bool IsSlotted
+        {
+            get { return isSlotted; }
+            set
+            {
+                SetProperty(ref isSlotted, value);
+                OnPropertyChanged(nameof(ShowCounters));
+            }
+        }
+
+        private bool isTop;
+        public bool IsTop
+        {
+            get { return isTop; }
+            set
+            {
+                SetProperty(ref isTop, value);
+                OnPropertyChanged(nameof(ShowCounters));
+            }
+        }
+
         #region Effect Modifiers
         private bool isFlipped;
         public bool IsFlipped
         {
             get { return isFlipped; }
-            set { SetProperty(ref isFlipped, value); }
+            set
+            {
+                SetProperty(ref isFlipped, value);
+                OnPropertyChanged(nameof(ShowCounters));
+            }
         }
 
         public ObservableCollection<int> Counters
         {
             get;
         } = new ObservableCollection<int>();
+
+        public bool ShowCounters
+        {
+            get
+            {
+                return IsSlotted && IsTop && !IsFlipped;
+            }
+        }
         #endregion
 
         public EffectViewModel()

@@ -11,42 +11,57 @@
     mc:Ignorable="d">
     <UserControl.Resources>
         <converters:IntegerToVisibilityConverter x:Key="IntegerToVisibility" />
+        <converters:CounterIntegerToVisibilityConverter x:Key="AddCounterIsVisible" LessThanThreeVisibility="Visible" />
     </UserControl.Resources>
 
-    <ListView
-        x:Name="CounterList"
-        HorizontalAlignment="Right"
-        VerticalAlignment="Top"
-        IsItemClickEnabled="True"
-        ItemClick="CounterList_ItemClick"
-        ItemsSource="{x:Bind Path=EffectViewModel.Counters, Mode=OneWay}"
-        SelectionMode="None"
-        Visibility="{x:Bind Path=EffectViewModel.Counters.Count, Converter={StaticResource IntegerToVisibility}, Mode=OneWay}">
-        <ListView.RenderTransform>
-            <TranslateTransform X="77" Y="25" />
-        </ListView.RenderTransform>
-        <ListView.ItemContainerStyle>
-            <Style TargetType="ListViewItem">
-                <Setter Property="Margin" Value="5,-5" />
-            </Style>
-        </ListView.ItemContainerStyle>
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <Border
-                    Width="30"
-                    Height="30"
-                    Margin="-20"
-                    Background="PaleVioletRed"
-                    BorderBrush="Black"
-                    BorderThickness="1"
-                    CornerRadius="180">
-                    <TextBlock
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Foreground="Black"
-                        Text="{Binding}" />
-                </Border>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+    <Grid Width="{x:Bind Path=Width}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ListView
+            x:Name="CounterList"
+            Grid.Row="0"
+            IsItemClickEnabled="True"
+            ItemClick="CounterList_ItemClick"
+            ItemsSource="{x:Bind Path=EffectViewModel.Counters, Mode=OneWay}"
+            SelectionMode="None"
+            Visibility="{x:Bind Path=EffectViewModel.Counters.Count, Converter={StaticResource IntegerToVisibility}, Mode=OneWay}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Margin" Value="5,-5" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        Width="30"
+                        Height="30"
+                        Background="PaleVioletRed"
+                        BorderBrush="Black"
+                        BorderThickness="1"
+                        CornerRadius="180">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="Black"
+                            Text="{Binding}" />
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button
+            x:Name="NewCounterBorder"
+            Grid.Row="1"
+            Width="30"
+            Height="30"
+            Margin="17,2,0,0"
+            Background="PaleVioletRed"
+            BorderBrush="Black"
+            BorderThickness="1"
+            Click="NewCounterBorder_Click"
+            Content="+"
+            Foreground="Black"
+            Visibility="{x:Bind Path=EffectViewModel.Counters.Count, Converter={StaticResource AddCounterIsVisible}, Mode=OneWay}" />
+    </Grid>
 </UserControl>

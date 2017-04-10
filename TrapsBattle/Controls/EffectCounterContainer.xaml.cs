@@ -39,5 +39,10 @@ namespace TrapsBattle.Controls
         {
             EffectViewModel.IncrementCounter((int)e.ClickedItem);
         }
+
+        private void NewCounterBorder_Click(object sender, RoutedEventArgs e)
+        {
+            EffectViewModel.AddCounter(1);
+        }
     }
 }

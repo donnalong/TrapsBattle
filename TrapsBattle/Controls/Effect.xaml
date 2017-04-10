@@ -1,102 +1,121 @@
-﻿<UserControl x:Class="TrapsBattle.Controls.Effect"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:converters="using:TrapsBattle.Converters"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="using:TrapsBattle.Controls"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="300"
-             d:DesignWidth="400"
-             mc:Ignorable="d">
-  <UserControl.Resources>
-    <converters:EffectSuitToColourConverter x:Key="EffectSuitToColour" />
-    <converters:BooleanToVisibilityConverter x:Key="FlippedIsVisible"
-                                             TrueVisibility="Visible" />
-    <Style TargetType="TextBlock">
-      <Setter Property="Margin"
-              Value="5" />
-    </Style>
-  </UserControl.Resources>
+﻿<UserControl
+    x:Class="TrapsBattle.Controls.Effect"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="using:TrapsBattle.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:TrapsBattle.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:EffectSuitToColourConverter x:Key="EffectSuitToColour" />
+        <converters:BooleanToVisibilityConverter x:Key="TrueIsVisible" TrueVisibility="Visible" />
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="5" />
+        </Style>
+    </UserControl.Resources>
 
-  <Grid x:Name="EffectGrid"
+    <Grid
+        x:Name="EffectGrid"
         Width="{x:Bind Path=Width}"
         Margin="{x:Bind Path=Margin}"
+        Padding="{x:Bind Path=Padding}"
         Background="{x:Bind Path=Background}"
         BorderBrush="{x:Bind Path=BorderBrush}"
-        BorderThickness="{x:Bind Path=BorderThickness}"
-        Padding="{x:Bind Path=Padding}">
+        BorderThickness="{x:Bind Path=BorderThickness}">
 
-    <Grid x:Name="UnflippedGrid">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="*" />
-      </Grid.RowDefinitions>
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="Auto" />
-      </Grid.ColumnDefinitions>
+        <Grid x:Name="UnflippedGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-      <!--  Title Row  -->
-      <TextBlock x:Name="SuitBlock"
-                 Grid.Row="0"
-                 Grid.Column="0"
-                 HorizontalAlignment="Left"
-                 FontWeight="Bold"
-                 Foreground="{x:Bind Path=EffectViewModel.Suit, Converter={StaticResource EffectSuitToColour}, Mode=OneWay}"
-                 Text="{x:Bind Path=EffectViewModel.Suit, Mode=OneWay}" />
+            <!--  Title Row  -->
+            <TextBlock
+                x:Name="SuitBlock"
+                Grid.Row="0"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                FontWeight="Bold"
+                Foreground="{x:Bind Path=EffectViewModel.Suit, Converter={StaticResource EffectSuitToColour}, Mode=OneWay}"
+                Text="{x:Bind Path=EffectViewModel.Suit, Mode=OneWay}" />
 
-      <TextBlock x:Name="ClassBlock"
-                 Grid.Row="0"
-                 Grid.Column="0"
-                 Grid.ColumnSpan="3"
-                 HorizontalAlignment="Center"
-                 FontWeight="Bold"
-                 Text="{x:Bind Path=EffectViewModel.Class, Mode=OneWay}" />
+            <TextBlock
+                x:Name="ClassBlock"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                HorizontalAlignment="Center"
+                FontWeight="Bold"
+                Text="{x:Bind Path=EffectViewModel.Class, Mode=OneWay}" />
 
-      <TextBlock x:Name="LevelBlock"
-                 Grid.Row="0"
-                 Grid.Column="2"
-                 HorizontalAlignment="Right"
-                 FontWeight="Bold"
-                 Text="{x:Bind Path=EffectViewModel.Level, Mode=OneWay}" />
+            <TextBlock
+                x:Name="LevelBlock"
+                Grid.Row="0"
+                Grid.Column="2"
+                HorizontalAlignment="Right"
+                FontWeight="Bold"
+                Text="{x:Bind Path=EffectViewModel.Level, Mode=OneWay}" />
 
-      <!--  Content  -->
-      <TextBlock x:Name="NameBlock"
-                 Grid.Row="1"
-                 Grid.Column="0"
-                 Grid.ColumnSpan="3"
-                 HorizontalAlignment="Center"
-                 FontSize="20"
-                 Text="{x:Bind Path=EffectViewModel.Name, Mode=OneWay}"
-                 TextWrapping="WrapWholeWords" />
+            <!--  Content  -->
+            <TextBlock
+                x:Name="NameBlock"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Text="{x:Bind Path=EffectViewModel.Name, Mode=OneWay}"
+                TextWrapping="WrapWholeWords" />
 
-      <TextBlock x:Name="DescriptionBlock"
-                 Grid.Row="2"
-                 Grid.Column="0"
-                 Grid.ColumnSpan="3"
-                 HorizontalAlignment="Center"
-                 Text="{x:Bind Path=EffectViewModel.Description, Mode=OneWay}"
-                 TextWrapping="WrapWholeWords" />
+            <TextBlock
+                x:Name="DescriptionBlock"
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                HorizontalAlignment="Center"
+                Text="{x:Bind Path=EffectViewModel.Description, Mode=OneWay}"
+                TextWrapping="WrapWholeWords" />
+        </Grid>
+
+        <!--  Flipped Grid  -->
+        <Grid
+            Width="{x:Bind Path=UnflippedGrid.Width}"
+            Height="{x:Bind Path=UnflippedGrid.Height}"
+            Background="{x:Bind Path=EffectViewModel.Suit, Converter={StaticResource EffectSuitToColour}, Mode=OneWay}"
+            Visibility="{x:Bind Path=EffectViewModel.IsFlipped, Converter={StaticResource TrueIsVisible}, Mode=OneWay}">
+            <TextBlock
+                x:Name="FlippedNameBlock"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="20"
+                Foreground="White"
+                Text="{x:Bind Path=EffectViewModel.Name, Mode=OneWay}"
+                TextWrapping="WrapWholeWords" />
+        </Grid>
+
+        <!--  Counters  -->
+        <local:EffectCounterContainer
+            Grid.Row="2"
+            Grid.Column="2"
+            Width="60"
+            Margin="0,30,0,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            EffectViewModel="{x:Bind Path=EffectViewModel}"
+            Visibility="{x:Bind Path=EffectViewModel.ShowCounters, Converter={StaticResource TrueIsVisible}, Mode=OneWay}">
+            <local:EffectCounterContainer.RenderTransform>
+                <TranslateTransform X="25" />
+            </local:EffectCounterContainer.RenderTransform>
+        </local:EffectCounterContainer>
+
     </Grid>
-
-    <!--  Flipped Grid  -->
-    <Grid Width="{x:Bind Path=UnflippedGrid.Width}"
-          Height="{x:Bind Path=UnflippedGrid.Height}"
-          Background="{x:Bind Path=EffectViewModel.Suit, Converter={StaticResource EffectSuitToColour}, Mode=OneWay}"
-          Visibility="{x:Bind Path=EffectViewModel.IsFlipped, Converter={StaticResource FlippedIsVisible}, Mode=OneWay}">
-      <TextBlock x:Name="FlippedNameBlock"
-                 HorizontalAlignment="Center"
-                 VerticalAlignment="Center"
-                 FontSize="20"
-                 Foreground="White"
-                 Text="{x:Bind Path=EffectViewModel.Name, Mode=OneWay}"
-                 TextWrapping="WrapWholeWords" />
-    </Grid>
-
-    <!--  Counters  -->
-    <local:EffectCounterContainer EffectViewModel="{x:Bind Path=EffectViewModel}"/>
-
-  </Grid>
 </UserControl>

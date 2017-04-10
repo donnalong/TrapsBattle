@@ -69,22 +69,39 @@ namespace TrapsBattle.ViewModels
 
         public void NextRound()
         {
-            if (ActiveEffect != null)
+            foreach(EffectViewModel effectViewModel in SlottedEffects)
             {
-                ActiveEffect.NextRound();
+                effectViewModel.NextRound();
             }
         }
 
         internal void PushEffect(EffectViewModel effectViewModel)
         {
+            if(ActiveEffect != null)
+            {
+                ActiveEffect.IsTop = false;
+            }
+
             SlottedEffects.Add(effectViewModel);
 
-            effectViewModel.Counters.Add(1);
+            effectViewModel.IsSlotted = true;
+            effectViewModel.IsTop = true;
         }
 
         internal void PopEffect()
         {
+            if(ActiveEffect != null)
+            {
+                ActiveEffect.IsSlotted = false;
+                ActiveEffect.IsTop = false;
+            }
+
             SlottedEffects.Remove(ActiveEffect);
+
+            if(ActiveEffect != null)
+            {
+                ActiveEffect.IsTop = true;
+            }
         }
     }
 }
