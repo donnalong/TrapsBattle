@@ -110,7 +110,7 @@
             Margin="0,30,0,0"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
-            EffectViewModel="{x:Bind Path=EffectViewModel}"
+            EffectViewModel="{x:Bind Path=EffectViewModel, Mode=OneWay}"
             Visibility="{x:Bind Path=EffectViewModel.ShowCounters, Converter={StaticResource TrueIsVisible}, Mode=OneWay}">
             <local:EffectCounterContainer.RenderTransform>
                 <TranslateTransform X="25" />
