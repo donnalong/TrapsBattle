@@ -99,10 +99,23 @@ namespace TrapsBattle.ViewModels
             Counters.Add(counterLength);
         }
 
+        internal void IncrementCounter(int clickedItem)
+        {
+            for (int i = 0; i < Counters.Count; i++)
+            {
+                if (Counters[i] == clickedItem)
+                {
+                    Counters[i]++;
+
+                    break;
+                }
+            }
+        }
+
         public void NextRound()
         {
             IsFlipped = false;
-            
+
             for (int i = 0; i < Counters.Count; i++)
             {
                 Counters[i]--;

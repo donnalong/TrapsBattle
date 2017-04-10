@@ -78,6 +78,8 @@ namespace TrapsBattle.ViewModels
         internal void PushEffect(EffectViewModel effectViewModel)
         {
             SlottedEffects.Add(effectViewModel);
+
+            effectViewModel.Counters.Add(1);
         }
 
         internal void PopEffect()

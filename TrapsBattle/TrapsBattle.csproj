@@ -101,6 +101,9 @@
     <Compile Include="Controls\Effect.xaml.cs">
       <DependentUpon>Effect.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\EffectCounterContainer.xaml.cs">
+      <DependentUpon>EffectCounterContainer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\EffectSlot.xaml.cs">
       <DependentUpon>EffectSlot.xaml</DependentUpon>
     </Compile>
@@ -154,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Effect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\EffectCounterContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
