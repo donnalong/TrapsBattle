@@ -54,8 +54,9 @@ namespace TrapsBattle.Controls
             {
                 if (CharacterViewModel.SelectedEffect != null)
                 {
-                    effectSlotviewModel.PushEffect(new EffectViewModel(CharacterViewModel.SelectedEffect));
+                    effectSlotviewModel.PushEffect(CharacterViewModel.SelectedEffect);
 
+                    CharacterViewModel.Effects.Remove(CharacterViewModel.SelectedEffect);
                     CharacterViewModel.SelectedEffect = null;
                 }
                 else
