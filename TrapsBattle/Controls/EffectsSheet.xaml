@@ -21,7 +21,6 @@
         <GridView
             x:Name="EffectSlotList"
             Margin="0,0,10,10"
-            DoubleTapped="EffectSlotList_DoubleTapped"
             IsItemClickEnabled="True"
             ItemClick="EffectSlotList_ItemClick"
             ItemsSource="{x:Bind Path=EffectsSheetViewModel.Slots, Mode=OneWay}"
@@ -29,7 +28,7 @@
             ScrollViewer.HorizontalScrollMode="Enabled"
             ScrollViewer.VerticalScrollBarVisibility="Auto"
             ScrollViewer.VerticalScrollMode="Enabled"
-            SelectionMode="None">
+            SelectionMode="Single">
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <local:VariableSizedPanel Height="650" />

@@ -14,13 +14,17 @@
     </UserControl.Resources>
 
     <Grid
+        x:Name="CharacterSheetGrid"
         Width="{x:Bind Path=Width}"
         MinHeight="650"
         Margin="{x:Bind Path=Margin}"
         Padding="{x:Bind Path=Padding}"
         Background="{x:Bind Path=Background}"
         BorderBrush="{x:Bind Path=BorderBrush}"
-        BorderThickness="{x:Bind Path=BorderThickness}">
+        BorderThickness="{x:Bind Path=BorderThickness}"
+        ManipulationCompleted="Grid_ManipulationCompleted"
+        ManipulationDelta="Grid_ManipulationDelta"
+        ManipulationStarted="Grid_ManipulationStarted">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
@@ -33,6 +37,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel
+            x:Name="CharacterDisplayPanel"
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="4"
@@ -102,13 +107,27 @@
                         Margin="0,0,0,10"
                         BorderBrush="Black"
                         BorderThickness="2"
-                        EffectViewModel="{Binding}">
-                        <local:Effect.RenderTransform>
-                            <TranslateTransform x:Name="EffectTranslateTransform" />
-                        </local:Effect.RenderTransform>
-                    </local:Effect>
+                        EffectViewModel="{Binding}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <local:Effect
+            x:Name="DraggableEffect"
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            Width="300"
+            Background="White"
+            BorderBrush="Black"
+            BorderThickness="2"
+            Opacity="0.8"
+            RenderTransformOrigin="0,0"
+            Visibility="Collapsed">
+            <local:Effect.RenderTransform>
+                <TranslateTransform x:Name="DraggableEffectTranslateTransform" />
+            </local:Effect.RenderTransform>
+        </local:Effect>
     </Grid>
 </UserControl>

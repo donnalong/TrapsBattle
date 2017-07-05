@@ -130,10 +130,6 @@
                     BorderBrush="Black"
                     BorderThickness="1"
                     EffectViewModel="{x:Bind Path=EffectSlotViewModel.ActiveEffect, Mode=OneWay}"
-                    ManipulationCompleted="SlottedEffect_ManipulationCompleted"
-                    ManipulationDelta="SlottedEffect_ManipulationDelta"
-                    ManipulationMode="All"
-                    ManipulationStarted="SlottedEffect_ManipulationStarted"
                     OnEffectViewModelChanged="SlottedEffect_OnEffectViewModelChanged"
                     RenderTransformOrigin="0, 0">
                     <local:Effect.RenderTransform>
