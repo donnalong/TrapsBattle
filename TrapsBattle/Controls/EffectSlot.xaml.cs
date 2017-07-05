@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TrapsBattle.Tools;
 using TrapsBattle.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -22,6 +23,13 @@ namespace TrapsBattle.Controls
 {
     public sealed partial class EffectSlot : UserControl
     {
+        #region Manipulation Variables
+        Point startingPosition;
+
+        Point originalRenderTransformOffset;
+        int originalZIndex;
+        #endregion
+
         private List<SolidColorBrush> Backgrounds = new List<SolidColorBrush>()
         {
             new SolidColorBrush(Colors.DarkGray),
@@ -141,5 +149,37 @@ namespace TrapsBattle.Controls
 
             SlottedEffectGrid.Margin = margin;
         }
+
+        #region Manipulation Events
+        private void SlottedEffect_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
+        {
+            //Save the initial touch point so we can calculate deltas
+            startingPosition = e.Position;
+
+            //Save the original Z index so we can put the effect back
+            originalZIndex = Canvas.GetZIndex(SlottedEffect);
+            Canvas.SetZIndex(SlottedEffect, -99);
+
+            //Save the original render transform position so we can put it back
+            originalRenderTransformOffset.X = SlottedEffectTranslateTransform.X;
+            originalRenderTransformOffset.Y = SlottedEffectTranslateTransform.Y;
+        }
+
+        private void SlottedEffect_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        {
+            Point deltaPosition = e.Position.SubtractPoint(startingPosition);
+
+            SlottedEffectTranslateTransform.X += deltaPosition.X;
+            SlottedEffectTranslateTransform.Y += deltaPosition.Y;
+        }
+
+        private void SlottedEffect_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
+        {
+            SlottedEffectTranslateTransform.X = originalRenderTransformOffset.X;
+            SlottedEffectTranslateTransform.Y = originalRenderTransformOffset.Y;
+
+            Canvas.SetZIndex(SlottedEffect, originalZIndex);
+        }
+        #endregion
     }
 }
