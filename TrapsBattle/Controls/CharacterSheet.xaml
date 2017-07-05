@@ -94,9 +94,10 @@
             x:Name="PossibleEffectsList"
             Grid.Row="1"
             Grid.Column="3"
+            MinWidth="20"
             Padding="0,10,0,0"
             BorderBrush="Black"
-            BorderThickness="0,2,2,0"
+            BorderThickness="0,2,0,0"
             ItemsSource="{x:Bind Path=CharacterViewModel.Effects, Mode=OneWay}"
             ScrollViewer.VerticalScrollBarVisibility="Hidden"
             SelectedItem="{x:Bind Path=CharacterViewModel.SelectedEffect, Converter={StaticResource EffectViewModelToObjectConverter}, Mode=TwoWay}">

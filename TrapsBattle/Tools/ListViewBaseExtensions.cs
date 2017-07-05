@@ -29,13 +29,13 @@ namespace TrapsBattle.Tools
             return default(T);
         }
 
-        public static Rect? GetBoundingRectForItem(this ListViewBase listViewBase, object item)
+        public static Rect? GetBoundingRectForItem(this ListViewBase listViewBase, object item, FrameworkElement relativeTo = null)
         {
             FrameworkElement frameworkElement = listViewBase.ContainerFromItem(item) as FrameworkElement;
 
             if(frameworkElement != null)
             {
-                Rect rect = frameworkElement.GetBoundingRect();
+                Rect rect = frameworkElement.GetBoundingRect(relativeTo);
 
                 return rect;
             }

@@ -91,7 +91,7 @@ namespace TrapsBattle.Controls
 
                 dragStartPosition = StartPosition.PossibleList;
 
-                boundingRect = PossibleEffectsList.GetBoundingRectForItem(draggedViewModel);
+                boundingRect = PossibleEffectsList.GetBoundingRectForItem(draggedViewModel, CharacterSheetGrid);
             }
 
             if (draggedViewModel != null)
@@ -103,10 +103,11 @@ namespace TrapsBattle.Controls
                 //Save the initial touch point so we can calculate deltas
                 lastManipulationPosition = point;
 
-                DraggableEffect.Height = boundingRect.Value.Height;
+                DraggableEffect.Width = 300;
+                DraggableEffect.Height = boundingRect.Value.Height - 20; //stupid magic number
 
-                DraggableEffectTranslateTransform.X = boundingRect.Value.X;
-                DraggableEffectTranslateTransform.Y = boundingRect.Value.Y;
+                DraggableEffectTranslateTransform.X = boundingRect.Value.X - (CharacterSheetGrid.ActualWidth / 2) + 150;
+                DraggableEffectTranslateTransform.Y = boundingRect.Value.Y - (CharacterSheetGrid.ActualHeight / 2) + (DraggableEffect.Height / 2);
 
                 DraggableEffect.Visibility = Visibility.Visible;
             }
