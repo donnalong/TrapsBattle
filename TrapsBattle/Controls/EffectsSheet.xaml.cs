@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TrapsBattle.Tools;
 using TrapsBattle.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -48,35 +49,57 @@ namespace TrapsBattle.Controls
 
         private void EffectSlotList_ItemClick(object sender, ItemClickEventArgs e)
         {
-            EffectSlotViewModel effectSlotviewModel = e.ClickedItem as EffectSlotViewModel;
+            EffectSlotViewModel effectSlotViewModel = e.ClickedItem as EffectSlotViewModel;
 
-            if (effectSlotviewModel != null)
+            if(effectSlotViewModel != null)
             {
-                if (CharacterViewModel.SelectedEffect != null)
-                {
-                    effectSlotviewModel.PushEffect(new EffectViewModel(CharacterViewModel.SelectedEffect));
-
-                    CharacterViewModel.SelectedEffect = null;
-                }
-                else
-                {
-                    effectSlotviewModel.ToggleFlipActiveEffect();
-                }
+                effectSlotViewModel.ToggleFlipActiveEffect();
             }
         }
 
-        private void EffectSlotList_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        public EffectSlotViewModel GetEffectSlotAtPoint(Point point)
         {
-            ListViewItemPresenter itemPresenter = e.OriginalSource as ListViewItemPresenter;
+            EffectSlotViewModel slot = EffectSlotList.GetItemAtPoint<EffectSlotViewModel>(point);
 
-            if(itemPresenter != null)
+            if (slot != null)
             {
-                EffectSlotViewModel effectSlotViewModel = itemPresenter.Content as EffectSlotViewModel;
+                return slot;
+            }
 
-                if(effectSlotViewModel != null)
-                {
-                    effectSlotViewModel.PopEffect();
-                }
+            return null;
+        }
+
+        public Rect? GetBoundingRectForItem(EffectSlotViewModel item)
+        {
+            return EffectSlotList.GetBoundingRectForItem(item);
+        }
+
+        public void HighlightSlot(Point pointInEffectSheet)
+        {
+            ClearAllHighlights();
+
+            EffectSlotViewModel slot = EffectSlotList.GetItemAtPoint<EffectSlotViewModel>(pointInEffectSheet);
+
+            if (slot != null)
+            {
+                EffectSlotList.SelectedItem = slot;
+            }
+        }
+
+        public void ClearAllHighlights()
+        {
+            EffectSlotList.SelectedItem = null;
+        }
+
+        public void DropEffectInSlot(Point point, EffectViewModel effect)
+        {
+            EffectSlotViewModel effectSlotViewModel = GetEffectSlotAtPoint(point);
+
+            if (effectSlotViewModel != null)
+            {
+                effectSlotViewModel.PushEffect(effect);
+
+                CharacterViewModel.Effects.Remove(effect);
             }
         }
     }

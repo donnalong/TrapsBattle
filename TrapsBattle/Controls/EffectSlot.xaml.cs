@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TrapsBattle.Tools;
 using TrapsBattle.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -30,6 +31,12 @@ namespace TrapsBattle.Controls
         };
 
         private const int StackedCardPositionDelta = 5;
+
+        public Effect GetSlottedEffect
+        {
+            get { return SlottedEffect; }
+        }
+
 
         public EffectSlotViewModel EffectSlotViewModel
         {

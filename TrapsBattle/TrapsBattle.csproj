@@ -125,7 +125,11 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\ListViewBaseExtensions.cs" />
     <Compile Include="Tools\ObservableDictionary.cs" />
+    <Compile Include="Tools\PointExtensions.cs" />
+    <Compile Include="Tools\UIElementExtensions.cs" />
+    <Compile Include="Tools\VisualTreeHelperExtensions.cs" />
     <Compile Include="ViewModels\CharacterViewModel.cs" />
     <Compile Include="ViewModels\EffectSlotViewModel.cs" />
     <Compile Include="ViewModels\EffectsSheetViewModel.cs" />
